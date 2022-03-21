@@ -1,6 +1,6 @@
 package Task3;
 
-class HrDirector extends Employee{
+class HrDirector extends Director{
 
     public HrDirector(String name, int age, double workExperience) {
         super(name, age, workExperience);
