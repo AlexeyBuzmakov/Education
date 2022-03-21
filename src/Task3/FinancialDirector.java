@@ -1,6 +1,6 @@
 package Task3;
 
-class FinancialDirector extends Employee{
+class FinancialDirector extends Director{
 
     public FinancialDirector(String name, int age, double workExperience) {
         super(name, age, workExperience);
