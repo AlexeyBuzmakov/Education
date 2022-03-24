@@ -13,7 +13,10 @@ public class Human {
         this.animal = animal;
     }
 
-    public void definitionAnimal(String animal) {
+    public void definitionAnimal() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите животное");
+        animal = scanner.nextLine();
         switch(animal) {
             case "Dog":
                 Animal dog = new Dog();
@@ -25,7 +28,8 @@ public class Human {
                 Animal fish = new Fish();
                 break;
             default:
-                System.out.println("Такого животного нет");
+                System.out.println("Такого животного в списке нет. Повторите ввод.");
+                animal = scanner.nextLine();
         }
         Human human = new Human(name, age, animal);
     }

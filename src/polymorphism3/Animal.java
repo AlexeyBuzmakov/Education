@@ -2,8 +2,8 @@ package polymorphism3;
 
 public interface Animal {
 
-    default void say(Animal animal) {
-
+    static void say(Animal animal) {
+        animal.say();
     }
 
     void say();
