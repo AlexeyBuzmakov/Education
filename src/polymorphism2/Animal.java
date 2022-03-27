@@ -1,4 +1,6 @@
 package polymorphism2;
 
-public class Animal {
+public abstract class Animal {
+
 }
+

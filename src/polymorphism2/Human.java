@@ -1,37 +1,27 @@
 package polymorphism2;
 
-import java.util.Scanner;
-
 public class Human {
     private String name;
     private int age;
-    private String animal;
+    private Animal animal;
 
-    public Human(String name, int age, String animal) {
+    public Human(String name, int age) {
         this.name = name;
         this.age = age;
+    }
+
+    public void setAnimal(Animal animal) {
         this.animal = animal;
     }
 
-    public void definitionAnimal() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите животное");
-        animal = scanner.nextLine();
-        switch(animal) {
-            case "Dog":
-                Animal dog = new Dog();
-                break;
-            case "Cat":
-                Animal cat = new Cat();
-                break;
-            case "Fish":
-                Animal fish = new Fish();
-                break;
-            default:
-                System.out.println("Такого животного в списке нет. Повторите ввод.");
-                animal = scanner.nextLine();
+    public Animal chooseAnimal(String humanAnimal) {
+        switch(humanAnimal) {
+            case "Dog" -> {return new Dog();}
+            case "Cat" -> {return new Cat();}
+            case "Fish" -> {return new Fish();}
+            default -> System.out.println("Некоректный ввод");
         }
-        Human human = new Human(name, age, animal);
+        return null;
     }
 
 
