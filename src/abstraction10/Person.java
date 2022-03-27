@@ -1,6 +1,6 @@
 package abstraction10;
 
-public class Person implements Service{
+class Person implements Service{
     private String name;
     private Integer age;
 
@@ -26,8 +26,8 @@ public class Person implements Service{
     }
 
     @Override
-    public void createObject() {
-        Person person = new Person(getName(), getAge());
+    public Person createObject() {
+        return new Person(getName(), getAge());
     }
 
     @Override

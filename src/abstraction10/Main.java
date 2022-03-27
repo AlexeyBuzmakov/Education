@@ -5,8 +5,8 @@ public class Main {
         Person person = new Person("Bob", 19);
         person.setName("Alex");
         person.setAge(22);
-        person.createObject();
-        person.clear();
-        System.out.println(person.makeString());
+        Person person1 = person.createObject();
+        person1.clear();
+        System.out.println(person1.makeString());
     }
 }
