@@ -2,7 +2,7 @@ package abstraction10;
 
 public interface Service {
 
-    Human create();
+    Person createObject();
 
     String makeString();
 
