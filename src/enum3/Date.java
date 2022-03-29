@@ -4,11 +4,13 @@ public class Date {
     private DayWeek nameDayWeek;
     private Month month;
     private int age;
+    private int numberDayMonth;
 
-    public Date(int age, Month month, DayWeek nameDayWeek) {
+    public Date(int age, Month month, int numberDayMonth, DayWeek nameDayWeek) {
         this.age = age;
         this.month = month;
         this.nameDayWeek = nameDayWeek;
+        this.numberDayMonth = numberDayMonth;
     }
 
     public DayWeek getNameDayWeek() {
@@ -32,6 +34,18 @@ public class Date {
     }
 
     public void setAge(int age) {
-        this.age = age;
+        if(age > 0) {
+            this.age = age;
+        }
+    }
+
+    public int getNumberDayMonth() {
+        return numberDayMonth;
+    }
+
+    public void setNumberDayMonth(int numberDayMonth) {
+        if (numberDayMonth > 0 && numberDayMonth <= 31){
+            this.numberDayMonth = numberDayMonth;
+        }
     }
 }
