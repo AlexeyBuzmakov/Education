@@ -1,16 +1,12 @@
 package enum1;
 
 public class Airplane {
-    private MotionState state;
     private String name;
     private double speed;
 
-    public MotionState getState() {
-        return state;
-    }
-
-    public void setState(MotionState state) {
-        this.state = state;
+    public Airplane(String name, double speed) {
+        this.name = name;
+        this.speed = speed;
     }
 
     public String getName() {
@@ -27,11 +23,5 @@ public class Airplane {
 
     public void setSpeed(double speed) {
         this.speed = speed;
-    }
-
-    public Airplane(String name, double speed, MotionState state) {
-        this.name = name;
-        this.speed = speed;
-        this.state = state;
     }
 }
