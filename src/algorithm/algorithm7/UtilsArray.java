@@ -3,18 +3,25 @@ package algorithm.algorithm7;
 public class UtilsArray {
 
     public void determineMostFrequentElement(int[]arr) {
-        int a = 0;
-        while(a <= arr.length) {
-            int mostFrequentElement = 0;
-            for (int i = 0; i < arr.length; i++) {
-                for (int j = 0; j < arr.length; j++) {
-                    int currentElement = arr[i];
-                    
-                    }
+        int elementLotRepetition = 0;
+        int cycleNumberMostRepetitions = 0;
+        int numberRepetitionsCurrentCircle = 0;
+        for (int i = 0; i < arr.length - 1; i++) {
+            for(int j = i + 1; j < arr.length; j++) {
+                if (arr[i] == arr[j]) {
+                    numberRepetitionsCurrentCircle++;
                 }
-            a++;
             }
+            if(numberRepetitionsCurrentCircle > cycleNumberMostRepetitions) {
+                cycleNumberMostRepetitions = numberRepetitionsCurrentCircle;
+                elementLotRepetition = arr[i];
+            }
+            numberRepetitionsCurrentCircle = 0;
         }
+        System.out.println("Элемент, встречающийся наибольшее количество раз: "+ elementLotRepetition +
+        " количество повторений: " + (cycleNumberMostRepetitions + 1));
+
+    }
 
     public void determineMissingElement(int[]arr) {
         int a = 0;
