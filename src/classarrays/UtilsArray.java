@@ -1,9 +1,9 @@
-package arrays;
+package classarrays;
 
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Array {
+public class UtilsArray {
 
     public void sortElementsAscendingOrder(int[]arr) {
         Arrays.sort(arr);
