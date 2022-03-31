@@ -5,10 +5,9 @@ public class Person {
     private int age;
     private Gender gender;
 
-    public Person(String name, int age, Gender gender) {
+    public Person(String name, int age) {
         this.name = name;
         this.age = age;
-        this.gender = gender;
     }
 
     public String getName() {
@@ -33,5 +32,13 @@ public class Person {
 
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    public Gender determineGenderPerson(String genderPerson) {
+        switch(genderPerson) {
+            case "Male" -> {return Gender.MALE;}
+            case "Female" -> {return Gender.FEMALE;}
+        }
+        return null;
     }
 }

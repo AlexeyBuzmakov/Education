@@ -3,19 +3,19 @@ package packenum.enum1;
 public class Airplane {
     private String name;
     private double speed;
-    private MotionState state;
+    private MotionState motionState;
 
     public Airplane(String name, double speed) {
         this.name = name;
         this.speed = speed;
     }
 
-    public MotionState getState() {
-        return state;
+    public MotionState getMotionState() {
+        return motionState;
     }
 
-    public void setState(MotionState state) {
-        this.state = state;
+    public void setMotionState(MotionState motionState) {
+        this.motionState = motionState;
     }
 
     public String getName() {
@@ -32,5 +32,15 @@ public class Airplane {
 
     public void setSpeed(double speed) {
         this.speed = speed;
+    }
+
+    public MotionState motionStateDetection(String state) {
+        switch(state) {
+            case "Parking" -> {return MotionState.PARKING;}
+            case "Takeoff" -> {return MotionState.TAKEOFF;}
+            case "Flight" -> {return MotionState.FLIGHT;}
+            case "Landing" -> {return MotionState.LANDING;}
+        }
+        return null;
     }
 }

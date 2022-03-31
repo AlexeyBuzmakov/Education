@@ -5,21 +5,21 @@ import java.util.Scanner;
 
 public class UtilsArray {
 
-    public void sortElementsAscendingOrder(int[]arr) {
+    public static void sortElementsAscendingOrder(int[]arr) {
         Arrays.sort(arr);
         System.out.println(Arrays.toString(arr));
         }
 
-    public void sorElementsAlphabetically(String[]arr) {
+    public static void sorElementsAlphabetically(String[]arr) {
         Arrays.sort(arr);
         System.out.println(Arrays.toString(arr));
     }
 
-    public boolean checkEqualityArrays(String[]arr, String[]arr2) {
+    public static boolean checkEqualityArrays(String[]arr, String[]arr2) {
         return Arrays.equals(arr, arr2);
     }
 
-    public boolean checkEqualityDipArrays() {
+    public static boolean checkEqualityDipArrays() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите размер первого массива");
         int columnArr = scanner.nextInt();
@@ -45,7 +45,7 @@ public class UtilsArray {
         return Arrays.deepEquals(arr, arr2);
     }
 
-    public void fillingElement(int[]arr) {
+    public static void fillArray(int[]arr) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите элемент для заполнения массива");
         int fillElement = scanner.nextInt();
@@ -53,12 +53,12 @@ public class UtilsArray {
         System.out.println(Arrays.toString(arr));
     }
 
-    public void cloningArray(int[]arr) {
+    public static void cloningArray(int[]arr) {
         int[]arr2 = arr.clone();
         System.out.println(Arrays.toString(arr2));
     }
 
-    public void minMaxElementArray(int[]arr) {
+    public static void minMaxElementArray(int[]arr) {
         Arrays.sort(arr);
         System.out.println("Минимальнное значение массива: " + arr[0] +
         " Максимальное значение массива: " + arr[arr.length - 1]);

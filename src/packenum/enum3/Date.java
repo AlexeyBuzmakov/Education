@@ -3,11 +3,11 @@ package packenum.enum3;
 public class Date {
     private DayWeek nameDayWeek;
     private Month month;
-    private int age;
+    private int year;
     private int numberDayMonth;
 
     public Date(int age, Month month, int numberDayMonth, DayWeek nameDayWeek) {
-        this.age = age;
+        this.year = age;
         this.month = month;
         this.nameDayWeek = nameDayWeek;
         this.numberDayMonth = numberDayMonth;
@@ -29,13 +29,13 @@ public class Date {
         this.month = month;
     }
 
-    public int getAge() {
-        return age;
+    public int getYear() {
+        return year;
     }
 
-    public void setAge(int age) {
-        if(age > 0) {
-            this.age = age;
+    public void setYear(int year) {
+        if(year > 0) {
+            this.year = year;
         }
     }
 
