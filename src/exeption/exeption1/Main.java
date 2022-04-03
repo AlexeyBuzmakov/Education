@@ -5,7 +5,7 @@ public class Main {
 
         int result = 0;
         try{
-           result = Calculator.divisionNumbers(20,5, '/');
+           result = Calculator.divisionNumbers(20,0, '/');
         }
         catch (ArithmeticException exception) {
             System.out.println(exception.getMessage());
