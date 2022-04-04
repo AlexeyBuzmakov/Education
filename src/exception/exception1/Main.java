@@ -1,11 +1,11 @@
-package exeption.exeption1;
+package exception.exception1;
 
 public class Main {
     public static void main(String[] args) {
 
         int result = 0;
         try{
-           result = Calculator.divisionNumbers(20,4, '/');
+           result = Calculator.calculator(20,4, '/');
             System.out.println(result);
         }
         catch (ArithmeticException exception) {

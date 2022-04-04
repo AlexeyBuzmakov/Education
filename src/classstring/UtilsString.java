@@ -70,16 +70,10 @@ public class UtilsString {
             newStr.deleteCharAt(newStr.lastIndexOf("3"));
         }
 
-        String str1 = str.substring(0, (str.indexOf("3") + 3));
-        int n = 0;
-        while(n + 8  <= str.length()) {
-           str1 = str1.concat(str.substring((str.indexOf("3") + 1 + n), (str.indexOf("3") + 3 + n)));
-            n += 3;
-        }
-        System.out.println(str1);
+        String str1 = str.substring(0, (str.indexOf("3") + 1));
+        String str2 = str.substring(str.indexOf("3")).replace("3","");
+        System.out.println(str1.concat(str2));
         System.out.println(newStr);
-
-
     }
 
     public static void convertIntArrayString(int[]arr) {           //7
