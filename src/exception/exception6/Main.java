@@ -8,6 +8,4 @@ public class Main {
         Files files = new Files();
         FileWriter file = files.create("file.txt");
     }
-
-
 }
