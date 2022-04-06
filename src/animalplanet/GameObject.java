@@ -27,7 +27,7 @@ public abstract class GameObject{
 
     public void appearance() {
         int i = 0;
-        while(i <= amount) {
+        while(i < amount) {
             int columnField = (int) (Math.random() * 25);
             int lengthField = (int) (Math.random() * 25);
             while (!Field.GAME_FIELD[columnField][lengthField].equals(kind)) {

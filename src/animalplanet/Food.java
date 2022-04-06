@@ -2,6 +2,10 @@ package animalplanet;
 
 public abstract class Food extends GameObject{
 
+    public Food(String kind, int amount) {
+        super(kind, amount);
+    }
+
     @Override
     public String getKind() {
         return super.getKind();
@@ -20,11 +24,5 @@ public abstract class Food extends GameObject{
     @Override
     public void setAmount(int amount) {
         super.setAmount(amount);
-    }
-
-    public Food(String kind, int amount) {
-        super(kind, amount);
-
-
     }
 }
