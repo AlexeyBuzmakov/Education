@@ -1,7 +1,15 @@
 package animalplanet;
 
+import java.util.Arrays;
+
 public class Field {
-    public static final char[][]GAME_FIELD =  new char[25][25];
+    public static final String[][]GAME_FIELD = new String[25][25];
+
+    public static void fieldInitialization() {
+        for (String[] strings : GAME_FIELD) {
+            Arrays.fill(strings, "[ ]");
+        }
+    }
 
     public static void showGameField() {
         for(int i = 0; i < GAME_FIELD.length; i++) {
