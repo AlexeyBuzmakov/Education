@@ -14,8 +14,7 @@ public class Main {
         System.out.println(list);
         Util.getElementArray(list, 0);
 
-        BankAccount<String> bankAccount = new BankAccount<>();
-        System.out.println(bankAccount.showBalance("1000 RUB"));
+        BankAccount<String> bankAccount = new BankAccount<>("1000");
 
         MyArrayList<Integer> array = new MyArrayList<>(new Integer[10]);
         array.addElementArray(6);

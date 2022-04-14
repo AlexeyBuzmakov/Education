@@ -3,7 +3,8 @@ package generics;
 public class BankAccount <T>{
     private T balance;
 
-    public T showBalance(T balance) {
-        return balance;
+    public BankAccount(T balance) {
+        this.balance = balance;
+        System.out.println("На вашем счёте: " + balance);
     }
 }
