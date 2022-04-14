@@ -2,7 +2,7 @@ package generics;
 
 import java.util.ArrayList;
 
-public class UtilArray<T>{
+public class Util {
 
     public static <T> void showArray(ArrayList<T> list) {
         System.out.println(list);
@@ -10,7 +10,7 @@ public class UtilArray<T>{
 
     public static <T> void fillArray(ArrayList<T> list, T element) {
         for(int i = 0; i < list.size(); i++) {
-            list.set(i, element);
+            list.add(i, element);
         }
     }
 
@@ -19,7 +19,7 @@ public class UtilArray<T>{
     }
 
     public static <T> void getElementArray(ArrayList<T> list, int index) {
-        System.out.println(list.get(index));
+        list.get(index);
     }
 
 }
