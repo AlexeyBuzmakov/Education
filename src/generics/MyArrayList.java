@@ -8,7 +8,7 @@ public class MyArrayList <T>{
         this.array = array;
     }
 
-    public void addElementArray (T element) {
+    public void addElement(T element) {
         if(size >= array.length) {
             throw new ArrayIndexOutOfBoundsException("Введённый индекс выходит за пределы длины массива");
         }
@@ -16,25 +16,29 @@ public class MyArrayList <T>{
         size++;
     }
 
-    public void removeElementArray(int index) {
+    public void removeElement(int index) {
         if(index >= array.length) {
             throw new ArrayIndexOutOfBoundsException("Введённый индекс выходит за пределы длины массива");
         }
-        array[index] = null;
+        for(int i = index; i < array.length - 1; i++) {
+            array[i] = array[i + 1];
+        }
     }
 
-    public void removeFirstElementArray() {
-        array[0] = null;
+    public void removeFirstElement() {
+        for(int i = 0; i < array.length - 1; i++) {
+            array[i] = array[i + 1];
+        }
     }
 
-    public T getElementArray(int index) {
+    public T getElement(int index) {
         if(index >= array.length) {
             throw new ArrayIndexOutOfBoundsException("Введённый индекс выходит за пределы длины массива");
         }
         return array[index];
     }
 
-    public void changeElementArray(int index, T element) {
+    public void changeElement(int index, T element) {
         if(index >= array.length) {
             throw new ArrayIndexOutOfBoundsException("Введённый индекс выходит за пределы длины массива");
         }
