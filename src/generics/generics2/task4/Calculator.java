@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Calculator {
 
-    public double figuresArea(ArrayList<Figure>list) {
+    public double figuresArea(ArrayList<? extends Figure>list) {
         int sum = 0;
         for (Figure figure : list) {
             sum += figure.calculateArea();
