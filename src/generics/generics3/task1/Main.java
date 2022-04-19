@@ -4,15 +4,15 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        Utils<Integer>utils = new Utils<>();
-        utils.compare(30, 10);
-        ArrayList<Integer>list = new ArrayList<>();
-        list.add(10);
-        list.add(5);
-        list.add(125);
-        list.add(27);
-        list.add(84);
-        list.add(192);
+        Person person1 = new Person(30);
+        Person person2 = new Person(20);
+        Person person3 = new Person(10);
+
+        Utils<Person>utils = new Utils<>();
+        ArrayList<Person>list = new ArrayList<>();
+        list.add(person1);
+        list.add(person2);
+        list.add(person3);
         utils.sort(list);
     }
 }
