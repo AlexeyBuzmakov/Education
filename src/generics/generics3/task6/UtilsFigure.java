@@ -1,8 +1,8 @@
-package task6;
+package generics.generics3.task6;
 
-import task6.figure.Circle;
-import task6.figure.Square;
-import task6.figure.Figure;
+import generics.generics3.task6.figure.Circle;
+import generics.generics3.task6.figure.Square;
+import generics.generics3.task6.figure.Figure;
 
 public class UtilsFigure {
 
