@@ -11,6 +11,7 @@ public class Main {
         System.out.println(util.count(arr,2));
         util.task7();
         util.task8();
+        util.task9(50);
 
     }
 }

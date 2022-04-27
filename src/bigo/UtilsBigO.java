@@ -70,4 +70,12 @@ public class UtilsBigO {
             }
         }
     }
+
+    public void task9(int n) {                              //big O = O(log n)
+        int count = 0;
+        while(n > count) {
+            n /= 2;
+            count++;
+        }
+    }
 }
