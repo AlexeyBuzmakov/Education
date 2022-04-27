@@ -66,8 +66,8 @@ public class UtilsList {
 
     public Number[] conversionToArray(List<Number>list) {          //3
         Number[]arr = new Number[list.size()];
-        for(Number num : list) {
-            arr[list.indexOf(num)] = num;
+        for(int i = 0; i < arr.length; i++) {
+            arr[i] = list.get(i);
         }
         return arr;
     }
@@ -123,6 +123,4 @@ public class UtilsList {
     public static <E> List<E> of(E...elements) {                   //10
         return List.of(elements);
     }
-
-
 }
