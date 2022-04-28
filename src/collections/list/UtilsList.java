@@ -1,9 +1,6 @@
-package collections;
+package collections.list;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class UtilsList {
 
@@ -120,12 +117,22 @@ public class UtilsList {
         list.ensureCapacity(1_000_000);
     }
 
+    public void merger(List<Number>arrayList, List<Number>linkedList) {     //10
+        int l = arrayList.size();
+        arrayList.addAll(linkedList);
+        for(int i = 0; i < l; i++) {
+            linkedList.add(arrayList.get(i));
+        }
+        System.out.println(arrayList);
+        System.out.println(linkedList);
+    }
+
     @SafeVarargs
-    public static <E> List<E> of(E...elements) {                   //10
+    public static <E> List<E> of(E...elements) {                   //11    тут не понял как реализовывается
         return List.of(elements);
     }
 
-    public List<Number> trimToSize() {                            //11
+    public List<Number> trimToSize() {                             //12
         Random random = new Random();
         ArrayList<Number>list = new ArrayList<>();
         list.ensureCapacity(50);

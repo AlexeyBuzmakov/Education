@@ -1,7 +1,5 @@
 package collections.list;
 
-import collections.UtilsList;
-
 import java.util.*;
 
 public class Main {
@@ -32,7 +30,8 @@ public class Main {
 //        System.out.println(utils.insertArray(arrayList, arr));
 //        System.out.println(utils.removeIdenticalRow(arrayList));
 //        utils.increaseCapacity((ArrayList<Number>) arrayList);
+//        utils.merger(arrayList, linkedList);
 //        System.out.println(UtilsList.of(arrayList, linkedList));
-        System.out.println(utils.trimToSize());
+//        System.out.println(utils.trimToSize());
     }
 }
