@@ -9,14 +9,8 @@ public class Main {
         List<Number>linkedList = new LinkedList<>();
         Integer[]arr = {5, 16, 93, 54, 111, 8, 37};
 
-        for(int i = 0; i < 10; i++) {
-            Random random = new Random();
-            int num = random.nextInt(100);
-            arrayList.add(num);
-            linkedList.add(num);
-        }
+        utils.fillLists(arrayList, linkedList);
 
-//        System.out.println(arrayList);
 //        System.out.println(utils.sum(arrayList));
 //        System.out.println(utils.sumEven(arrayList));
 //        System.out.println(utils.countRepet(arrayList, 5));
@@ -27,11 +21,14 @@ public class Main {
 //        System.out.println(utils.conversionToList(arr));
 //        System.out.println(utils.removeEveryThird(linkedList));
 //        System.out.println(utils.removeFirstLast(linkedList));
-//        System.out.println(utils.insertArray(arrayList, arr));
+//        System.out.println(utils.insertMiddle(arrayList, arr));
 //        System.out.println(utils.removeIdenticalRow(arrayList));
 //        utils.increaseCapacity((ArrayList<Number>) arrayList);
 //        utils.merger(arrayList, linkedList);
 //        System.out.println(UtilsList.of(arrayList, linkedList));
-//        System.out.println(utils.trimToSize());
+//
+//        Number[]array = new Number[100];
+//        System.out.println(Arrays.toString(utils.fillArray(array)));
+//        System.out.println(Arrays.toString(utils.trimToSize(array)));
     }
 }

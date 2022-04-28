@@ -4,6 +4,17 @@ import java.util.*;
 
 public class UtilsList {
 
+    public void fillLists(List<Number> arrayList, List<Number> linkedList) {
+        for (int i = 0; i < 10; i++) {
+            Random random = new Random();
+            int num = random.nextInt(100);
+            arrayList.add(num);
+            linkedList.add(num);
+        }
+        System.out.println(arrayList);
+        System.out.println(linkedList);
+    }
+
     public double sum(List<Number> list) {                       //1.1
         double sum = 0;
         for(Number num : list) {
@@ -53,9 +64,9 @@ public class UtilsList {
 
     public List<Number> removeRepet(List<Number>list) {            //2
         for(int i = 0; i < list.size(); i++) {
-            for(int j = 0; j < list.size(); j++) {
+            for(int j = i + 1; j < list.size(); j++) {
                 if(list.get(i).equals(list.get(j))) {
-                    list.remove(list.get(j));
+                    list.remove(j);
                 }
             }
         }
@@ -77,7 +88,7 @@ public class UtilsList {
     public List<Number> removeEveryThird(List<Number>list) {       //5
         for(int i = 2; i < list.size(); i++) {
             list.remove(i);
-            i = i + 2;
+            i = i + 1;
         }
         return list;
     }
@@ -88,7 +99,7 @@ public class UtilsList {
         return list;
     }
 
-    public List<Number> insertArray(List<Number> list, Number[] arr) {         //7
+    public List<Number> insertMiddle(List<Number> list, Number[] arr) {         //7
         int l = list.size() / 2;                                               // тут должно быть решение получше
         for(int i = 0; i < arr.length; i++) {
             list.add(null);
@@ -107,7 +118,7 @@ public class UtilsList {
     public List<Number> removeIdenticalRow(List<Number>list) {     //8
         for(int i = 0; i < list.size() - 1; i++) {
             if(list.get(i).equals(list.get(i + 1))) {
-               list.remove(i);
+               list.remove(i + 1);
             }
         }
         return list;
@@ -132,15 +143,25 @@ public class UtilsList {
         return List.of(elements);
     }
 
-    public List<Number> trimToSize() {                             //12
+    public Number[] fillArray(Number[]arr) {                            //12
         Random random = new Random();
-        ArrayList<Number>list = new ArrayList<>();
-        list.ensureCapacity(50);
-        int size = random.nextInt(50);
-        for(int i = 0; i < size; i++) {
-            list.add(random.nextInt(100));
+        for(int i = 0; i < 20; i++) {
+           arr[i] = random.nextInt(100);
         }
-        list.ensureCapacity(list.size());
-        return list;
+        return arr;
+    }
+
+    public Number[] trimToSize(Number[] arr) {                             //12
+        int count = 0;
+        for (Number num : arr) {
+            if (num != null) {
+                count++;
+            }
+        }
+        Number[] array = new Number[count];
+        for (int i = 0; i < count; i++) {
+            array[i] = arr[i];
+        }
+        return array;
     }
 }
