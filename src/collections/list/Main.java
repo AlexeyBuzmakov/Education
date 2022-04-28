@@ -33,5 +33,6 @@ public class Main {
 //        System.out.println(utils.removeIdenticalRow(arrayList));
 //        utils.increaseCapacity((ArrayList<Number>) arrayList);
 //        System.out.println(UtilsList.of(arrayList, linkedList));
+        System.out.println(utils.trimToSize());
     }
 }

@@ -3,6 +3,7 @@ package collections;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class UtilsList {
 
@@ -122,5 +123,17 @@ public class UtilsList {
     @SafeVarargs
     public static <E> List<E> of(E...elements) {                   //10
         return List.of(elements);
+    }
+
+    public List<Number> trimToSize() {                            //11
+        Random random = new Random();
+        ArrayList<Number>list = new ArrayList<>();
+        list.ensureCapacity(50);
+        int size = random.nextInt(50);
+        for(int i = 0; i < size; i++) {
+            list.add(random.nextInt(100));
+        }
+        list.ensureCapacity(list.size());
+        return list;
     }
 }
