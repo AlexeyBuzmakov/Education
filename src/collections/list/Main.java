@@ -23,7 +23,7 @@ public class Main {
 //        UtilsList.increaseCapacity((ArrayList<Number>) arrayList);
 //        UtilsList.merger(arrayList, linkedList);
 
-//        List<Number>list = new ArrayList<>(new ArrayList<>(UtilsList.of(arrayList, linkedList)));
+//        List<List<Number>>list = new ArrayList<>(new ArrayList<>(UtilsList.of(arrayList, linkedList)));
 
 //        Number[]array = new Number[100];
 //        UtilsList.fillArray(array);

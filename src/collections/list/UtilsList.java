@@ -86,11 +86,7 @@ public class UtilsList {
     }
 
     public static void insertMiddle(List<Number> list, Number[] arr) {         //7
-        int middle = list.size() / 2;
-        for (Number number : arr) {
-            list.add(middle, number);
-            middle++;
-        }
+        list.addAll(list.size() / 2, List.of(arr));
         System.out.println(list);
     }
 
