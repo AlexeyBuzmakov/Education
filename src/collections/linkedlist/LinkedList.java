@@ -13,7 +13,7 @@ public class LinkedList<T> {
         }
     }
 
-    public void addFirst(T element) {
+    public void addFirst(T element) {                                          //2.1
         Node<T>newNode = new Node<>(element);
         if(size != 0) {
             newNode.next = first;
@@ -22,7 +22,7 @@ public class LinkedList<T> {
         size++;
     }
 
-    public void add(T element, int index) {
+    public void add(T element, int index) {                                    //2.2
         if(index < 0 || index > size) {
             return;
         }
@@ -41,7 +41,7 @@ public class LinkedList<T> {
         size++;
     }
 
-    public void addLast(T element) {
+    public void addLast(T element) {                                           //2.3
         if(size == 0) {
             addFirst(element);
             return;
@@ -54,7 +54,7 @@ public class LinkedList<T> {
         size++;
     }
 
-    public void removeFirst() {
+    public void removeFirst() {                                                //3.1
         if(size == 0) {
             return;
         }
@@ -62,7 +62,7 @@ public class LinkedList<T> {
         size--;
     }
 
-    public void remove(int index) {
+    public void remove(int index) {                                            //3.2
         if (size == 0 || index > size) {
             return;
         }
@@ -77,7 +77,7 @@ public class LinkedList<T> {
         size--;
     }
 
-    public void removeLast() {
+    public void removeLast() {                                                 //3.3
         if (size == 0) {
             return;
         }
@@ -91,30 +91,83 @@ public class LinkedList<T> {
         size--;
     }
 
-    public void removeElement(T element) {
+    public void removeElement(T element) {                                      //4
         if (size == 0) {
             return;
         }
         Node<T> parent = first;
         Node<T> current = first;
         while(current.next != null) {
-            if(current.element == element) {
-               current = current.next;
-               parent.next = current.next;
-               size--;
-               continue;
-            }
             parent = current;
             current = current.next;
+            if(current.element == element) {
+               current.element = parent.element;
+               size--;
+
+            }
+            System.out.print(current.element + " ");
         }
     }
 
-    public void printArray() {
-        Node<T> current = first;
-        while(current != null) {
-            System.out.print(current.element + "  ");
+    public boolean find(T element) {                                            //5
+        if (size == 0) {
+            return false;
+        }
+        Node<T>current = first;
+        while(current.next != null) {
+            if(current.element == element) {
+                return true;
+            }
             current = current.next;
         }
+        return false;
+    }
+
+    @SuppressWarnings("unchecked")                                              //6
+    public T[] toArray() {
+        Object[]arr = new Object[size];
+        Node<T> current = first;
+        int i = 0;
+        while(current != null) {
+            arr[i] = current.element;
+            current = current.next;
+            i++;
+        }
+        return (T[]) arr;
+    }
+
+    //7 у LinkedList нет Capacity, смысла в методе trimToSize нет.
+
+
+
+    public void push(T element) {                                               //9.1
+       addLast(element);
+    }
+
+    public T pop() {                                                            //9.2
+        if (size == 0) {
+            return null;
+        }
+        Node<T> parent = first;
+        Node<T> current = first;
+        while (current.next != null) {
+            parent = current;
+            current = current.next;
+        }
+        parent.next = null;
+        size--;
+        return current.element;
+    }
+
+    public T peek() {                                                           //9.3
+        if (size == 0) {
+            return null;
+        }
+        Node<T> current = first;
+        while (current.next != null) {
+            current = current.next;
+        }
+        return current.element;
     }
 }
 

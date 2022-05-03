@@ -13,7 +13,7 @@ public class ArrayList <T> {
         this.array = new Object[capacity];
     }
 
-    public void addFirst(T element) {                                                 //2.1
+    public void addFirst(T element) {                                                 //2.1  O(n)
         if(size == capacity) {
            grow();
         }
@@ -22,7 +22,7 @@ public class ArrayList <T> {
         size++;
     }
 
-    public void add(T element, int index) {                                           //2.2
+    public void add(T element, int index) {                                           //2.2  O(n)
         if(index > size || index < 0) {
             throw new ArrayIndexOutOfBoundsException("Некорректный ввод индекса");
         }
@@ -34,14 +34,14 @@ public class ArrayList <T> {
         size++;
     }
 
-    public void addLast(T element) {                                                  //2.3
+    public void addLast(T element) {                                                  //2.3  O(1)
         if (size == capacity) {
             grow();
         }
         array[size++] = element;
     }
 
-    public void removeFirst() {                                                       //3.1
+    public void removeFirst() {                                                       //3.1  O(n)
         if(size == 0) {
             throw new ArrayIndexOutOfBoundsException("Нет элементов для удаления");
         }
@@ -49,7 +49,7 @@ public class ArrayList <T> {
         size--;
     }
 
-    public void remove(int index) {                                                   //3.2
+    public void remove(int index) {                                                   //3.2  O(n)
         if(index > size || index < 0) {
             throw new ArrayIndexOutOfBoundsException("Некорректный ввод индекса");
         }
@@ -57,28 +57,28 @@ public class ArrayList <T> {
         size--;
     }
 
-    public void removeLast() {                                                        //3.3
+    public void removeLast() {                                                        //3.3  O(1)
         if(size == 0) {
             throw new ArrayIndexOutOfBoundsException("Нет элементов для удаления");
         }
         size--;
     }
 
-    public Object get(int index) {                                                    //4.1
+    public Object get(int index) {                                                    //4.1  O(1)
         if(index > size || index < 0) {
             throw new ArrayIndexOutOfBoundsException("Некорректный ввод индекса");
         }
         return array[index];
     }
 
-    public void set(T element,int index) {                                            //4.2
+    public void set(T element,int index) {                                            //4.2  O(1)
         if(index > size || index < 0) {
             throw new ArrayIndexOutOfBoundsException("Некорректный ввод индекса");
         }
         array[index] = element;
     }
 
-    public boolean find(T element) {                                                  //5
+    public boolean find(T element) {                                                  //5    O(n)
         for(int i = 0; i < size; i++) {
             if(array[i].equals(element)) {
                 return true;

@@ -1,5 +1,7 @@
 package collections.linkedlist;
 
+import java.util.Arrays;
+
 public class Main {
     public static void main(String[] args) {
         LinkedList<String>list = new LinkedList<>();
@@ -18,6 +20,10 @@ public class Main {
         list.removeLast();
         list.addFirst("Java");
         list.removeElement("Java");
-        list.printArray();
+//        System.out.println(list.find("Java"));
+//        list.push("Kotlin");
+//        System.out.println(list.pop());
+//        System.out.println(list.peek());
+        System.out.println(Arrays.toString(list.toArray()));
     }
 }
