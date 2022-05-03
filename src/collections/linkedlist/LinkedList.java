@@ -13,7 +13,7 @@ public class LinkedList<T> {
         }
     }
 
-    public void addFirst(T element) {                                          //2.1
+    public void addFirst(T element) {                                          //2.1   O(1)
         Node<T>newNode = new Node<>(element);
         if(size != 0) {
             newNode.next = first;
@@ -22,7 +22,7 @@ public class LinkedList<T> {
         size++;
     }
 
-    public void add(T element, int index) {                                    //2.2
+    public void add(T element, int index) {                                    //2.2    O(n)
         if(index < 0 || index > size) {
             return;
         }
@@ -41,7 +41,7 @@ public class LinkedList<T> {
         size++;
     }
 
-    public void addLast(T element) {                                           //2.3
+    public void addLast(T element) {                                           //2.3    O(n) в данном случае
         if(size == 0) {
             addFirst(element);
             return;
@@ -54,7 +54,7 @@ public class LinkedList<T> {
         size++;
     }
 
-    public void removeFirst() {                                                //3.1
+    public void removeFirst() {                                                //3.1     O(1)
         if(size == 0) {
             return;
         }
@@ -62,7 +62,7 @@ public class LinkedList<T> {
         size--;
     }
 
-    public void remove(int index) {                                            //3.2
+    public void remove(int index) {                                            //3.2    O(n)
         if (size == 0 || index > size) {
             return;
         }
@@ -77,7 +77,7 @@ public class LinkedList<T> {
         size--;
     }
 
-    public void removeLast() {                                                 //3.3
+    public void removeLast() {                                                 //3.3   O(n) в данном случае
         if (size == 0) {
             return;
         }
@@ -91,7 +91,7 @@ public class LinkedList<T> {
         size--;
     }
 
-    public void removeElement(T element) {                                      //4
+    public void removeElement(T element) {            //4   O(n)    с этим надо разобраться
         if (size == 0) {
             return;
         }
@@ -109,7 +109,7 @@ public class LinkedList<T> {
         }
     }
 
-    public boolean find(T element) {                                            //5
+    public boolean find(T element) {                                            //5   O(n)
         if (size == 0) {
             return false;
         }
@@ -138,6 +138,18 @@ public class LinkedList<T> {
 
     //7 у LinkedList нет Capacity, смысла в методе trimToSize нет.
 
+    public T sum () {                                                    //8
+        Node<T>current = first;
+        Double sum = (double) 0;
+        if(current.element instanceof Number) {
+            while (current != null) {
+                sum += (Double) current.element;
+                current = current.next;
+            }
+            return (T)sum;
+        }
+        return null;
+    }
 
 
     public void push(T element) {                                               //9.1

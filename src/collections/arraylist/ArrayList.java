@@ -34,7 +34,7 @@ public class ArrayList <T> {
         size++;
     }
 
-    public void addLast(T element) {                                                  //2.3  O(1)
+    public void addLast(T element) {                                                  //2.3  O(n)
         if (size == capacity) {
             grow();
         }
@@ -57,7 +57,7 @@ public class ArrayList <T> {
         size--;
     }
 
-    public void removeLast() {                                                        //3.3  O(1)
+    public void removeLast() {                                                        //3.3  O(n)
         if(size == 0) {
             throw new ArrayIndexOutOfBoundsException("Нет элементов для удаления");
         }
@@ -109,11 +109,11 @@ public class ArrayList <T> {
     }
 
     @SuppressWarnings("unchecked")
-    public T[] toArray() {                                                            //7.1
+    public T[] toArray() {                 //7.1 не смог сделать
         return (T[])array;
     }
 
-    public void addAll(List<T> list) {                                                //7.2
+    public void addAll(List<T> list) {                                                //7.2  O(n)
        int newSize = size;
        int j = 0;
        for(int i = newSize; i < newSize + list.size(); i++) {
@@ -126,11 +126,7 @@ public class ArrayList <T> {
        }
     }
 
-    public void sort() {                                                               //8
-        if(size == 0) {
-            throw new ArrayIndexOutOfBoundsException("Невозможно отсортировать пустой массив");
-        }
-        trimToSize();
+    public void sort() {                   //8  O(n^2) не смог сделать
         Arrays.sort(array);
     }
 

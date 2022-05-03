@@ -19,11 +19,12 @@ public class Main {
         list.remove(3);
         list.removeLast();
         list.addFirst("Java");
-        list.removeElement("Java");
-//        System.out.println(list.find("Java"));
-//        list.push("Kotlin");
-//        System.out.println(list.pop());
-//        System.out.println(list.peek());
+//        list.removeElement("Java");
+        System.out.println(list.find("Java"));
+        System.out.println(list.sum());
         System.out.println(Arrays.toString(list.toArray()));
+        list.push("Kotlin");
+        System.out.println(list.pop());
+        System.out.println(list.peek());
     }
 }
