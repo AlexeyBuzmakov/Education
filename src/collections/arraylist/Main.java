@@ -21,9 +21,9 @@ public class Main {
         System.out.println(list.find("33"));
         list.trimToSize();
         list.ensureCapacity(12);
-        list.sort();
+        System.out.println(Arrays.toString(list.toArray()));
+//        list.sort();
         list.addAll(list2);
         System.out.println(list);
-
     }
 }

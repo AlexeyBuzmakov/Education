@@ -1,6 +1,7 @@
 package collections.arraylist;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 public class ArrayList <T> {
@@ -50,7 +51,7 @@ public class ArrayList <T> {
     }
 
     public void remove(int index) {                                                   //3.2  O(n)
-        if(index > size || index < 0) {
+        if(index >= size || index < 0) {
             throw new ArrayIndexOutOfBoundsException("Некорректный ввод индекса");
         }
         shiftLeft(index);
@@ -64,11 +65,12 @@ public class ArrayList <T> {
         size--;
     }
 
-    public Object get(int index) {                                                    //4.1  O(1)
+    @SuppressWarnings("unchecked")
+    public T get(int index) {                                                    //4.1  O(1)
         if(index > size || index < 0) {
             throw new ArrayIndexOutOfBoundsException("Некорректный ввод индекса");
         }
-        return array[index];
+        return (T)array[index];
     }
 
     public void set(T element,int index) {                                            //4.2  O(1)
@@ -109,8 +111,8 @@ public class ArrayList <T> {
     }
 
     @SuppressWarnings("unchecked")
-    public T[] toArray() {                 //7.1 не смог сделать
-        return (T[])array;
+    public T[] toArray() {                                                        //7.1
+        return (T[]) Arrays.copyOf(array, size, array.getClass());
     }
 
     public void addAll(List<T> list) {                                                //7.2  O(n)
@@ -126,8 +128,18 @@ public class ArrayList <T> {
        }
     }
 
-    public void sort() {                   //8  O(n^2) не смог сделать
-        Arrays.sort(array);
+    @SuppressWarnings("unchecked")
+    public void sort(Comparator<T>comparator) {                   //8  O(n^2)
+        T buf;
+        for(int i = 0; i < size; i++) {
+            for(int j = i + 1; j < size; j++) {
+                if(comparator.compare((T) array[i], (T) array[j]) > 0) {
+                   buf = (T)array[i];
+                   array[i] = array[j];
+                   array[j] = buf;
+                }
+            }
+        }
     }
 
     private void grow() {
