@@ -1,10 +1,9 @@
-package collections.arraylist;
+package collections.list;
 
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.List;
 
-public class ArrayList <T> {
+public class ArrayList <T> implements List<T> {
     private Object[]array;
     private int capacity;
     private int size;
@@ -14,6 +13,7 @@ public class ArrayList <T> {
         this.array = new Object[capacity];
     }
 
+    @Override
     public void addFirst(T element) {                                                 //2.1  O(n)
         if(size == capacity) {
            grow();
@@ -23,6 +23,7 @@ public class ArrayList <T> {
         size++;
     }
 
+    @Override
     public void add(T element, int index) {                                           //2.2  O(n)
         if(index > size || index < 0) {
             throw new ArrayIndexOutOfBoundsException("Некорректный ввод индекса");
@@ -35,6 +36,7 @@ public class ArrayList <T> {
         size++;
     }
 
+    @Override
     public void addLast(T element) {                                                  //2.3  O(n)
         if (size == capacity) {
             grow();
@@ -42,6 +44,7 @@ public class ArrayList <T> {
         array[size++] = element;
     }
 
+    @Override
     public void removeFirst() {                                                       //3.1  O(n)
         if(size == 0) {
             throw new ArrayIndexOutOfBoundsException("Нет элементов для удаления");
@@ -50,6 +53,7 @@ public class ArrayList <T> {
         size--;
     }
 
+    @Override
     public void remove(int index) {                                                   //3.2  O(n)
         if(index >= size || index < 0) {
             throw new ArrayIndexOutOfBoundsException("Некорректный ввод индекса");
@@ -58,6 +62,7 @@ public class ArrayList <T> {
         size--;
     }
 
+    @Override
     public void removeLast() {                                                        //3.3  O(n)
         if(size == 0) {
             throw new ArrayIndexOutOfBoundsException("Нет элементов для удаления");
@@ -110,23 +115,23 @@ public class ArrayList <T> {
         array = newArray;
     }
 
-    @SuppressWarnings("unchecked")
-    public T[] toArray() {                                                        //7.1
-        return (T[]) Arrays.copyOf(array, size, array.getClass());
-    }
-
-    public void addAll(List<T> list) {                                                //7.2  O(n)
-       int newSize = size;
-       int j = 0;
-       for(int i = newSize; i < newSize + list.size(); i++) {
-           if(capacity == size) {
-               grow();
-           }
-           array[i] = list.get(j);
-           size++;
-           j++;
-       }
-    }
+//    @SuppressWarnings("unchecked")
+//    public T[] toArray() {                                                        //7.1
+//        return (T[]) Arrays.copyOf(array, size, array.getClass());
+//    }
+//
+//    public void addAll(List<T> list) {                                                //7.2  O(n)
+//       int newSize = size;
+//       int j = 0;
+//       for(int i = newSize; i < newSize + list.size(); i++) {
+//           if(capacity == size) {
+//               grow();
+//           }
+//           array[i] = list.get(j);
+//           size++;
+//           j++;
+//       }
+//    }
 
     @SuppressWarnings("unchecked")
     public void sort(Comparator<T>comparator) {                   //8  O(n^2)

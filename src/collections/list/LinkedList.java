@@ -1,6 +1,6 @@
-package collections.linkedlist;
+package collections.list;
 
-public class LinkedList<T> {
+public class LinkedList<T> implements List<T>{
     private Node<T> first;
     private int size;
 
@@ -13,6 +13,7 @@ public class LinkedList<T> {
         }
     }
 
+    @Override
     public void addFirst(T element) {                                          //2.1   O(1)
         Node<T>newNode = new Node<>(element);
         if(size != 0) {
