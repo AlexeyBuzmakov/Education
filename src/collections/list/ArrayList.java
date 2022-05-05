@@ -80,6 +80,7 @@ public class ArrayList <T> implements List<T> {
         }
     }
 
+    @Override
     @SuppressWarnings("unchecked")
     public T get(int index) {
         if(index >= size || index < 0) {
@@ -96,6 +97,7 @@ public class ArrayList <T> implements List<T> {
         array[index] = element;
     }
 
+    @Override
     public boolean find(T element) {
         for(int i = 0; i < size; i++) {
             if(array[i].equals(element)) {
@@ -105,44 +107,18 @@ public class ArrayList <T> implements List<T> {
         return false;
     }
 
-    public void trimToSize() {
-        Object[]newArray = new Object[size];
-        for(int i = 0; i < size; i++) {
-            newArray[i] = array[i];
-        }
-        array = newArray;
-        capacity = size;
-    }
-
-    public void ensureCapacity(int capacity) {
-        if (capacity <= size) {
-            throw new IllegalArgumentException("Вместимость не может быть меньше фактической длины массива");
-        }
-        Object[] newArray = new Object[capacity];
-        for (int i = 0; i < size; i++) {
-            newArray[i] = array[i];
-        }
-        this.capacity = capacity;
-        array = newArray;
-    }
-
-    @Override
-    @SuppressWarnings("unchecked")
-    public T[] toArray() {
-        return (T[]) Arrays.copyOf(array, size, array.getClass());
-    }
-
-//    public void addAll(List<T> list) {
-//       int newSize = size;
-//       int j = 0;
-//       for(int i = newSize; i < newSize + list.size(); i++) {
-//           if(capacity == size) {
-//               grow();
-//           }
-//           array[i] = list.get(j);
-//           size++;
-//           j++;
-//       }
+//    @Override
+//    public void addAll(java.util.List<T>list) {
+//        int newSize = size;
+//        int j = 0;
+//        for(int i = newSize; i < newSize + list.size(); i++) {
+//            if(capacity == size) {
+//                grow();
+//            }
+//            array[i] = newArray[j];
+//            size++;
+//            j++;
+//        }
 //    }
 
     @SuppressWarnings("unchecked")
@@ -159,29 +135,41 @@ public class ArrayList <T> implements List<T> {
         }
     }
 
+    public void ensureCapacity(int capacity) {
+        if (capacity <= size) {
+            throw new IllegalArgumentException("Вместимость не может быть меньше фактической длины массива");
+        }
+        Object[] newArray = new Object[capacity];
+        if (size >= 0) System.arraycopy(array, 0, newArray, 0, size);
+        this.capacity = capacity;
+        array = newArray;
+    }
+
+    public void trimToSize() {
+        Object[]newArray = new Object[size];
+        System.arraycopy(array, 0, newArray, 0, size);
+        array = newArray;
+        capacity = size;
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public T[] toArray() {
+        return (T[]) Arrays.copyOf(array, size, array.getClass());
+    }
+
     private void grow() {
         this.capacity *= 2;
         Object[]newArray = new Object[capacity];
-        for(int i = 0; i < size; i++) {
-            newArray[i] = array[i];
-        }
+        if (size >= 0) System.arraycopy(array, 0, newArray, 0, size);
         array = newArray;
     }
 
     private void shiftRight(int index) {
-       for(int i = size; i > index; i--) {
-           array[i] = array[i - 1];
-       }
+        if (size - index >= 0) System.arraycopy(array, index, array, index + 1, size - index);
     }
 
     private void shiftLeft(int index) {
-        for(int i = index; i < size - 1; i++) {
-            array[i] = array[i + 1];
-        }
-    }
-
-    @Override
-    public String toString() {
-        return Arrays.toString(array);
+        if (size - 1 - index >= 0) System.arraycopy(array, index + 1, array, index, size - 1 - index);
     }
 }

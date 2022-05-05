@@ -22,6 +22,9 @@ public interface List<T>{
 
     void set(T element, int index);
 
+    boolean find(T element);
+
+//    void addAll(List<T>newList);
 
 
 }

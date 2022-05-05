@@ -143,6 +143,7 @@ public class LinkedList<T> implements List<T>{
         current.element = element;
     }
 
+    @Override
     public boolean find(T element) {
         if (size == 0) {
             return false;
@@ -211,7 +212,5 @@ public class LinkedList<T> implements List<T>{
         }
         return current.element;
     }
-
-
 }
 
