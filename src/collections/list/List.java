@@ -1,5 +1,7 @@
 package collections.list;
 
+import java.util.Comparator;
+
 public interface List<T>{
 
     void addFirst(T element);
@@ -7,6 +9,8 @@ public interface List<T>{
     void add(T element, int index);
 
     void addLast(T element);
+
+    void addAll(List<T>list);
 
     void removeFirst();
 
@@ -16,15 +20,15 @@ public interface List<T>{
 
     void removeElement(T element);
 
-    T[] toArray();
-
     T get(int index);
 
     void set(T element, int index);
 
     boolean find(T element);
 
-//    void addAll(List<T>newList);
+    void sort(Comparator<T> comparator);
 
+    T[] toArray(T[]arr);
 
+    int size();
 }

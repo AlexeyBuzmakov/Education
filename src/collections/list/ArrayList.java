@@ -46,6 +46,15 @@ public class ArrayList <T> implements List<T> {
     }
 
     @Override
+    public void addAll(List<T>list) {
+        int i = 0;
+        while(i < list.size()) {
+            addLast(list.get(i));
+            i++;
+        }
+    }
+
+    @Override
     public void removeFirst() {
         if(size == 0) {
             throw new ArrayIndexOutOfBoundsException("Нет элементов для удаления");
@@ -107,22 +116,9 @@ public class ArrayList <T> implements List<T> {
         return false;
     }
 
-//    @Override
-//    public void addAll(java.util.List<T>list) {
-//        int newSize = size;
-//        int j = 0;
-//        for(int i = newSize; i < newSize + list.size(); i++) {
-//            if(capacity == size) {
-//                grow();
-//            }
-//            array[i] = newArray[j];
-//            size++;
-//            j++;
-//        }
-//    }
-
+    @Override
     @SuppressWarnings("unchecked")
-    public void sort(Comparator<T>comparator) {
+    public void sort(Comparator<T> comparator) {
         T buf;
         for(int i = 0; i < size; i++) {
             for(int j = i + 1; j < size; j++) {
@@ -133,6 +129,27 @@ public class ArrayList <T> implements List<T> {
                 }
             }
         }
+    }
+
+    @Override
+    @SuppressWarnings("all")
+    public T[] toArray(T[]arr) {
+        if (arr.length < size)
+        return (T[]) Arrays.copyOf(array, size, arr.getClass());
+        System.arraycopy(array, 0, arr, 0, size);
+        if (arr.length > size)
+            arr[size] = null;
+        return arr;
+    }
+
+    @Override
+    public String toString() {
+        return Arrays.toString(array);
+    }
+
+    @Override
+    public int size() {
+        return size;
     }
 
     public void ensureCapacity(int capacity) {
@@ -152,10 +169,18 @@ public class ArrayList <T> implements List<T> {
         capacity = size;
     }
 
-    @Override
-    @SuppressWarnings("unchecked")
-    public T[] toArray() {
-        return (T[]) Arrays.copyOf(array, size, array.getClass());
+    public void push(T element) {
+       addLast(element);
+    }
+
+    public T pop() {
+        T buf = get(size--);
+        removeLast();
+        return buf;
+    }
+
+    public T peek() {
+        return get(size--);
     }
 
     private void grow() {

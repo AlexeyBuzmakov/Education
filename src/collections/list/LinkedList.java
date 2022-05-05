@@ -1,5 +1,8 @@
 package collections.list;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 public class LinkedList<T> implements List<T>{
     private Node<T> first;
     private int size;
@@ -56,6 +59,15 @@ public class LinkedList<T> implements List<T>{
         }
         current.next = new Node<>(element);
         size++;
+    }
+
+    @Override
+    public void addAll(List<T>list) {
+        int i = 0;
+        while(i < list.size()) {
+            addLast(list.get(i));
+            i++;
+        }
     }
 
     @Override
@@ -159,58 +171,67 @@ public class LinkedList<T> implements List<T>{
     }
 
     @Override
+    public void sort(Comparator<T> comparator) {
+
+    }
+
+    @Override
     @SuppressWarnings("unchecked")
-    public T[] toArray() {
-        Object[]arr = new Object[size];
-        Node<T> current = first;
+    public T[] toArray(T[]arr) {
+        if (arr.length < size)
+            arr = (T[])java.lang.reflect.Array.newInstance(
+                    arr.getClass(), size);
         int i = 0;
-        while(current != null) {
-            arr[i] = current.element;
-            current = current.next;
-            i++;
-        }
-        return (T[]) arr;
+        Object[] result = arr;
+        for (Node<T> current = first; current != null; current = current.next)
+            result[i++] = current.element;
+
+        if (arr.length > size)
+            arr[size] = null;
+
+        return arr;
     }
 
-    public <E extends Number> double sum(LinkedList<E> list) {
-        Node<E> current = (Node<E>) first;
-        double sum = 0;
-        while (current != null) {
-            sum += current.element.doubleValue();
-            current = current.next;
-        }
-        return sum;
+    @Override
+    public int size() {
+        return size;
     }
-
 
     public void push(T element) {
-       addLast(element);
+        addLast(element);
     }
 
     public T pop() {
         if (size == 0) {
             return null;
         }
-        Node<T> parent = first;
-        Node<T> current = first;
-        while (current.next != null) {
-            parent = current;
-            current = current.next;
-        }
-        parent.next = null;
-        size--;
-        return current.element;
+        T buf = get(size--);
+        removeLast();
+        return buf;
     }
 
     public T peek() {
         if (size == 0) {
             return null;
         }
-        Node<T> current = first;
-        while (current.next != null) {
+        return get(size--);
+    }
+
+    @Override
+    public String toString() {
+        return Arrays.toString(createList());
+    }
+
+    private Object[] createList() {
+        Object[]array = new Object[size];
+        Node<T>current = first;
+        int i = 0;
+        while(current != null) {
+            array[i] = current.element;
             current = current.next;
+            i++;
         }
-        return current.element;
+        return array;
     }
 }
 
