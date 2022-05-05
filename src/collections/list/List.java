@@ -14,4 +14,14 @@ public interface List<T>{
 
     void removeLast();
 
+    void removeElement(T element);
+
+    T[] toArray();
+
+    T get(int index);
+
+    void set(T element, int index);
+
+
+
 }

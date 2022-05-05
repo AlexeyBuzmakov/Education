@@ -14,7 +14,7 @@ public class LinkedList<T> implements List<T>{
     }
 
     @Override
-    public void addFirst(T element) {                                          //2.1   O(1)
+    public void addFirst(T element) {
         Node<T>newNode = new Node<>(element);
         if(size != 0) {
             newNode.next = first;
@@ -23,8 +23,9 @@ public class LinkedList<T> implements List<T>{
         size++;
     }
 
-    public void add(T element, int index) {                                    //2.2    O(n)
-        if(index < 0 || index > size) {
+    @Override
+    public void add(T element, int index) {
+        if(index < 0 || index >= size) {
             return;
         }
         if(index == 0) {
@@ -32,9 +33,9 @@ public class LinkedList<T> implements List<T>{
             return;
         }
         Node<T> current = first;
-        while(index - 1 > 0) {
-           current = current.next;
-           index--;
+        while(index > 0) {
+            current = current.next;
+            index--;
         }
         Node<T>newNode = new Node<>(element);
         newNode.next = current.next;
@@ -42,7 +43,9 @@ public class LinkedList<T> implements List<T>{
         size++;
     }
 
-    public void addLast(T element) {                                           //2.3    O(n) в данном случае
+
+    @Override
+    public void addLast(T element) {
         if(size == 0) {
             addFirst(element);
             return;
@@ -55,7 +58,8 @@ public class LinkedList<T> implements List<T>{
         size++;
     }
 
-    public void removeFirst() {                                                //3.1     O(1)
+    @Override
+    public void removeFirst() {
         if(size == 0) {
             return;
         }
@@ -63,7 +67,8 @@ public class LinkedList<T> implements List<T>{
         size--;
     }
 
-    public void remove(int index) {                                            //3.2    O(n)
+    @Override
+    public void remove(int index) {
         if (size == 0 || index > size) {
             return;
         }
@@ -78,7 +83,8 @@ public class LinkedList<T> implements List<T>{
         size--;
     }
 
-    public void removeLast() {                                                 //3.3   O(n) в данном случае
+    @Override
+    public void removeLast() {
         if (size == 0) {
             return;
         }
@@ -92,31 +98,58 @@ public class LinkedList<T> implements List<T>{
         size--;
     }
 
-    public void removeElement(T element) {            //4   O(n)    с этим надо разобраться
+    public void removeElement(T element) {
         if (size == 0) {
             return;
         }
         Node<T> parent = first;
         Node<T> current = first;
+        if(first.element.equals(element)) {
+            removeFirst();
+        }
         while(current.next != null) {
             parent = current;
             current = current.next;
-            if(current.element == element) {
-               current.element = parent.element;
+            if(current.element.equals(element)) {
+               current.next = parent.next;
                size--;
-
             }
-            System.out.print(current.element + " ");
         }
     }
 
-    public boolean find(T element) {                                            //5   O(n)
+    @Override
+    public T get(int index) {
+        if(index >= size || index < 0) {
+           throw new ArrayIndexOutOfBoundsException("Некорректный ввод индекса");
+        }
+        Node<T>current = first;
+        while(index > 0) {
+            current = current.next;
+            index--;
+        }
+        return current.element;
+    }
+
+    @Override
+    public void set(T element, int index) {
+        if(index >= size || index < 0) {
+            throw new ArrayIndexOutOfBoundsException("Некорректный ввод индекса");
+        }
+        Node<T>current = first;
+        while(index > 0) {
+            current = current.next;
+            index--;
+        }
+        current.element = element;
+    }
+
+    public boolean find(T element) {
         if (size == 0) {
             return false;
         }
         Node<T>current = first;
         while(current.next != null) {
-            if(current.element == element) {
+            if(current.element.equals(element)) {
                 return true;
             }
             current = current.next;
@@ -124,7 +157,8 @@ public class LinkedList<T> implements List<T>{
         return false;
     }
 
-    @SuppressWarnings("unchecked")                                              //6
+    @Override
+    @SuppressWarnings("unchecked")
     public T[] toArray() {
         Object[]arr = new Object[size];
         Node<T> current = first;
@@ -137,27 +171,22 @@ public class LinkedList<T> implements List<T>{
         return (T[]) arr;
     }
 
-    //7 у LinkedList нет Capacity, смысла в методе trimToSize нет.
-
-    public T sum () {                                                    //8
-        Node<T>current = first;
-        Double sum = (double) 0;
-        if(current.element instanceof Number) {
-            while (current != null) {
-                sum += (Double) current.element;
-                current = current.next;
-            }
-            return (T)sum;
+    public <E extends Number> double sum(LinkedList<E> list) {
+        Node<E> current = (Node<E>) first;
+        double sum = 0;
+        while (current != null) {
+            sum += current.element.doubleValue();
+            current = current.next;
         }
-        return null;
+        return sum;
     }
 
 
-    public void push(T element) {                                               //9.1
+    public void push(T element) {
        addLast(element);
     }
 
-    public T pop() {                                                            //9.2
+    public T pop() {
         if (size == 0) {
             return null;
         }
@@ -172,7 +201,7 @@ public class LinkedList<T> implements List<T>{
         return current.element;
     }
 
-    public T peek() {                                                           //9.3
+    public T peek() {
         if (size == 0) {
             return null;
         }
@@ -182,5 +211,7 @@ public class LinkedList<T> implements List<T>{
         }
         return current.element;
     }
+
+
 }
 

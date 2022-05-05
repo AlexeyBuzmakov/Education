@@ -14,7 +14,7 @@ public class ArrayList <T> implements List<T> {
     }
 
     @Override
-    public void addFirst(T element) {                                                 //2.1  O(n)
+    public void addFirst(T element) {
         if(size == capacity) {
            grow();
         }
@@ -24,7 +24,7 @@ public class ArrayList <T> implements List<T> {
     }
 
     @Override
-    public void add(T element, int index) {                                           //2.2  O(n)
+    public void add(T element, int index) {
         if(index > size || index < 0) {
             throw new ArrayIndexOutOfBoundsException("Некорректный ввод индекса");
         }
@@ -36,8 +36,9 @@ public class ArrayList <T> implements List<T> {
         size++;
     }
 
+
     @Override
-    public void addLast(T element) {                                                  //2.3  O(n)
+    public void addLast(T element) {
         if (size == capacity) {
             grow();
         }
@@ -45,7 +46,7 @@ public class ArrayList <T> implements List<T> {
     }
 
     @Override
-    public void removeFirst() {                                                       //3.1  O(n)
+    public void removeFirst() {
         if(size == 0) {
             throw new ArrayIndexOutOfBoundsException("Нет элементов для удаления");
         }
@@ -54,7 +55,7 @@ public class ArrayList <T> implements List<T> {
     }
 
     @Override
-    public void remove(int index) {                                                   //3.2  O(n)
+    public void remove(int index) {
         if(index >= size || index < 0) {
             throw new ArrayIndexOutOfBoundsException("Некорректный ввод индекса");
         }
@@ -63,29 +64,39 @@ public class ArrayList <T> implements List<T> {
     }
 
     @Override
-    public void removeLast() {                                                        //3.3  O(n)
+    public void removeLast() {
         if(size == 0) {
             throw new ArrayIndexOutOfBoundsException("Нет элементов для удаления");
         }
         size--;
     }
 
+    @Override
+    public void removeElement(T element) {
+        for (int i = 0; i < size; i++) {
+            if (array[i].equals(element)) {
+                remove(i);
+            }
+        }
+    }
+
     @SuppressWarnings("unchecked")
-    public T get(int index) {                                                    //4.1  O(1)
-        if(index > size || index < 0) {
+    public T get(int index) {
+        if(index >= size || index < 0) {
             throw new ArrayIndexOutOfBoundsException("Некорректный ввод индекса");
         }
         return (T)array[index];
     }
 
-    public void set(T element,int index) {                                            //4.2  O(1)
-        if(index > size || index < 0) {
+    @Override
+    public void set(T element,int index) {
+        if(index >= size || index < 0) {
             throw new ArrayIndexOutOfBoundsException("Некорректный ввод индекса");
         }
         array[index] = element;
     }
 
-    public boolean find(T element) {                                                  //5    O(n)
+    public boolean find(T element) {
         for(int i = 0; i < size; i++) {
             if(array[i].equals(element)) {
                 return true;
@@ -94,7 +105,7 @@ public class ArrayList <T> implements List<T> {
         return false;
     }
 
-    public void trimToSize() {                                                         //6.1
+    public void trimToSize() {
         Object[]newArray = new Object[size];
         for(int i = 0; i < size; i++) {
             newArray[i] = array[i];
@@ -103,7 +114,7 @@ public class ArrayList <T> implements List<T> {
         capacity = size;
     }
 
-    public void ensureCapacity(int capacity) {                                         //6.2
+    public void ensureCapacity(int capacity) {
         if (capacity <= size) {
             throw new IllegalArgumentException("Вместимость не может быть меньше фактической длины массива");
         }
@@ -115,12 +126,13 @@ public class ArrayList <T> implements List<T> {
         array = newArray;
     }
 
-//    @SuppressWarnings("unchecked")
-//    public T[] toArray() {                                                        //7.1
-//        return (T[]) Arrays.copyOf(array, size, array.getClass());
-//    }
-//
-//    public void addAll(List<T> list) {                                                //7.2  O(n)
+    @Override
+    @SuppressWarnings("unchecked")
+    public T[] toArray() {
+        return (T[]) Arrays.copyOf(array, size, array.getClass());
+    }
+
+//    public void addAll(List<T> list) {
 //       int newSize = size;
 //       int j = 0;
 //       for(int i = newSize; i < newSize + list.size(); i++) {
@@ -134,7 +146,7 @@ public class ArrayList <T> implements List<T> {
 //    }
 
     @SuppressWarnings("unchecked")
-    public void sort(Comparator<T>comparator) {                   //8  O(n^2)
+    public void sort(Comparator<T>comparator) {
         T buf;
         for(int i = 0; i < size; i++) {
             for(int j = i + 1; j < size; j++) {
@@ -163,7 +175,7 @@ public class ArrayList <T> implements List<T> {
     }
 
     private void shiftLeft(int index) {
-        for(int i = index; i < size; i++) {
+        for(int i = index; i < size - 1; i++) {
             array[i] = array[i + 1];
         }
     }
