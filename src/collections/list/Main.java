@@ -25,6 +25,7 @@ public class Main {
         linkedList.addLast(11);
         linkedList.addLast(91);
         linkedList.addLast(30);
+        linkedList.
 
         System.out.println(arrayList);
         System.out.println(linkedList);

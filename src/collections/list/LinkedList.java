@@ -172,7 +172,22 @@ public class LinkedList<T> implements List<T>{
 
     @Override
     public void sort(Comparator<T> comparator) {
+        Node<T>buf;
+        Node<T>current = first;
+        while(current != null) {
+            if(comparator.compare(current.element, current.next.element) > 0) {
+                buf = current;
+                current = current.next;
+                current.next = buf;
+                continue;
+            }
+            current = current.next;
+        }
+    }
 
+    @Override
+    public int size() {
+        return size;
     }
 
     @Override
@@ -193,8 +208,20 @@ public class LinkedList<T> implements List<T>{
     }
 
     @Override
-    public int size() {
-        return size;
+    public String toString() {
+        return Arrays.toString(createList());
+    }
+
+    private Object[] createList() {
+        Object[]array = new Object[size];
+        Node<T>current = first;
+        int i = 0;
+        while(current != null) {
+            array[i] = current.element;
+            current = current.next;
+            i++;
+        }
+        return array;
     }
 
     public void push(T element) {
@@ -215,23 +242,6 @@ public class LinkedList<T> implements List<T>{
             return null;
         }
         return get(size--);
-    }
-
-    @Override
-    public String toString() {
-        return Arrays.toString(createList());
-    }
-
-    private Object[] createList() {
-        Object[]array = new Object[size];
-        Node<T>current = first;
-        int i = 0;
-        while(current != null) {
-            array[i] = current.element;
-            current = current.next;
-            i++;
-        }
-        return array;
     }
 }
 

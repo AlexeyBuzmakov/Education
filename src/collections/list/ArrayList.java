@@ -132,6 +132,11 @@ public class ArrayList <T> implements List<T> {
     }
 
     @Override
+    public int size() {
+        return size;
+    }
+
+    @Override
     @SuppressWarnings("all")
     public T[] toArray(T[]arr) {
         if (arr.length < size)
@@ -145,11 +150,6 @@ public class ArrayList <T> implements List<T> {
     @Override
     public String toString() {
         return Arrays.toString(array);
-    }
-
-    @Override
-    public int size() {
-        return size;
     }
 
     public void ensureCapacity(int capacity) {

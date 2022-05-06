@@ -28,7 +28,7 @@ public interface List<T>{
 
     void sort(Comparator<T> comparator);
 
-    T[] toArray(T[]arr);
-
     int size();
+
+    T[] toArray(T[]arr);
 }
