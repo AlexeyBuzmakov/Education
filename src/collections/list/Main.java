@@ -25,9 +25,22 @@ public class Main {
         linkedList.addLast(11);
         linkedList.addLast(91);
         linkedList.addLast(30);
-        linkedList.
+
+        Vector<Integer>stack = new Stack<>();
+        stack.push(15);
+        stack.push(38);
+        stack.push(91);
+        stack.push(144);
+        stack.push(13);
+        stack.push(28);
+        stack.push(96);
+        stack.push(134);
+        stack.push(37);
+        stack.push(81);
 
         System.out.println(arrayList);
         System.out.println(linkedList);
+        System.out.println(stack);
+
     }
 }
