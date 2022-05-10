@@ -27,7 +27,7 @@ public class PriorityQueue<T> implements Queue<T>{
 
     @Override
     @SuppressWarnings("unchecked")
-    public T pull() {
+    public T poll() {
         if(isEmpty()) {
            return null;
         }
@@ -74,7 +74,7 @@ public class PriorityQueue<T> implements Queue<T>{
         while(peek() != null) {
             priorityQueue[i] = peek();
             i++;
-            pull();
+            poll();
         }
         return priorityQueue;
     }

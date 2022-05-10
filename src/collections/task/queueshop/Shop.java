@@ -25,18 +25,33 @@ public class Shop {
 
     private void queueMove() {
         Person person = new Person();
+        System.out.println(person);
         if(checkAge(person)) {
-            arrayDeque.addFirst(person);
+            checkQueue(person);
             arrayDeque.poll();
             return;
         }
         arrayDeque.offer(person);
         arrayDeque.poll();
-
     }
 
     private boolean checkAge(Person person) {
         return person.getAge() > 60;
+    }
+
+    private void checkQueue(Person person) {
+        ArrayDeque<Person>newArrayDeque = new ArrayDeque<>();
+        boolean flag = false;
+        for(Person person1 : arrayDeque) {
+            if(!flag) {
+                if (person1.getAge() <= 60) {
+                    newArrayDeque.offer(person);
+                    flag = true;
+                }
+            }
+            newArrayDeque.offer(person1);
+        }
+        arrayDeque = newArrayDeque;
     }
 
     private void printQueue() {

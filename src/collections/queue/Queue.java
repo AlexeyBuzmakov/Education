@@ -4,7 +4,7 @@ public interface Queue<T> {
 
     void offer(T element);
 
-    T pull();
+    T poll();
 
     T remove();
 

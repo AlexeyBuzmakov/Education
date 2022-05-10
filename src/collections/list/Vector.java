@@ -7,7 +7,7 @@ public class Vector<T> implements List<T>{
     public void push(T element) {
     }
 
-    public T pull() {
+    public T pop() {
         return null;
     }
 

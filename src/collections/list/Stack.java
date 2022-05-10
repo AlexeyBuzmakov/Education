@@ -26,7 +26,7 @@ public class Stack<T> extends Vector<T>{
 
     @Override
     @SuppressWarnings("unchecked")
-    public T pull() {
+    public T pop() {
         if(isEmpty()) {
             return null;
         }
@@ -60,7 +60,7 @@ public class Stack<T> extends Vector<T>{
         while(peek() != null) {
             stack[i] = peek();
             i++;
-            pull();
+            pop();
         }
         return stack;
     }

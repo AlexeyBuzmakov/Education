@@ -4,13 +4,13 @@ import java.util.ArrayDeque;
 import java.util.Random;
 
 public class Atm {
-    private static int Count;
+    private static int count;
     ArrayDeque<Person>atmFirst = new ArrayDeque<>();
     ArrayDeque<Person>atmSecond = new ArrayDeque<>();
 
     public void start() {
         fillQueue();
-        Count = atmFirst.size() + atmSecond.size();
+        count = atmFirst.size() + atmSecond.size();
         while (atmServiceOver()) {
             moveQueue();
             printQueue();
@@ -58,12 +58,12 @@ public class Atm {
         boolean a = random.nextBoolean();
         if (a) {
             arrayDeque.poll();
-            Count++;
+            count++;
         }
     }
 
     private boolean atmServiceOver() {
-        return Count <= 100;
+        return count <= 100;
     }
 
     private void printQueue() {
@@ -71,7 +71,7 @@ public class Atm {
         System.out.println();
         System.out.print(atmSecond);
         System.out.println();
-        System.out.println(Count);
+        System.out.println(count);
     }
 }
 
