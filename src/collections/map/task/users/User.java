@@ -1,17 +1,17 @@
 package collections.map.task.users;
 
-import java.util.Random;
-
 public class User {
-    private final String gender;
+    private final Gender gender;
     private final int age;
+    private final String password;
 
-    public User() {
-        this.gender = generateGender();
-        this.age = generateAge();
+    public User(Gender gender, int age, String password) {
+        this.gender = gender;
+        this.age = age;
+        this.password = password;
     }
 
-    public String getGender() {
+    public Gender getGender() {
         return gender;
     }
 
@@ -19,21 +19,12 @@ public class User {
         return age;
     }
 
-    private String generateGender() {
-        Random random = new Random();
-        boolean gender = random.nextBoolean();
-        if(gender) {
-            return "male";
-        }
-        return "female";
-    }
-
-    private int generateAge() {
-        return (int)(18 + Math.random() * 60);
+    public String getPassword() {
+        return password;
     }
 
     @Override
     public String toString() {
-        return "[gender:" + gender + " age:" + age + "]";
+        return "Пароль: " + password + " Пол: " + gender + " Возраст: " + age;
     }
 }
