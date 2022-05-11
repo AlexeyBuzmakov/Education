@@ -28,16 +28,16 @@ public class Site {
     }
 
     private User generateUser() {
-        return new User(generateGender(), generateAge(), generatePassword());
+        return new User(generateLogin() ,generateGender(), generateAge(), generatePassword());
     }
 
-    private Gender generateGender() {
+    private String generateGender() {
         Random random = new Random();
         boolean gender = random.nextBoolean();
         if (gender) {
-            return Gender.MALE;
+            return "Male";
         }
-        return Gender.FEMALE;
+        return "Female";
     }
 
     private int generateAge() {
@@ -55,7 +55,7 @@ public class Site {
     private String generatePassword() {
         char[] password = new char[6];
         for (int i = 0; i < password.length; i++) {
-            password[i] = (char) (65 + Math.random() * 26);
+            password[i] = (char) (48 + Math.random() * 9);
         }
         return String.valueOf(password);
     }
@@ -78,15 +78,15 @@ public class Site {
     private void registrationUser() {
         System.out.println("Укажите ваш пол.");
         System.out.println("1. Мужской \n2. Женский");
-        Gender gender = indicateGender();
+        String gender = indicateGender();
         System.out.println("Укажите ваш возраст.");
         int age = indicateAge();
         System.out.println("Придумайте логин (6 символов)");
         String login = createLogin();
         System.out.println("Введите пароль (6 символов");
         String password = createPassword();
-        User user = createUser(gender, age, password);
-        addUser(login, user);
+        User user = createUser(login ,gender, age, password);
+        addUser(user.getLogin(), user);
         System.out.println("Поздравляем! Пользователь зарегистрирован");
     }
 
@@ -94,8 +94,8 @@ public class Site {
         repository.getRepository().put(login, user);
     }
 
-    private User createUser(Gender gender, int age, String password) {
-        return new User(gender, age, password);
+    private User createUser(String login, String gender, int age, String password) {
+        return new User(login ,gender, age, password);
     }
 
     private String createLogin() {
@@ -112,11 +112,11 @@ public class Site {
         return login.toUpperCase();
     }
 
-    private Gender indicateGender() {
+    private String indicateGender() {
         Scanner scanner = new Scanner(System.in);
         switch(scanner.nextInt()) {
-            case 1: return Gender.MALE;
-            case 2: return Gender.FEMALE;
+            case 1: return "Male";
+            case 2: return "Female";
             default:
                 System.out.println("Ошибка ввода");
                 indicateGender();

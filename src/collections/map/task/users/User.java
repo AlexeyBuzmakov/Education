@@ -1,17 +1,23 @@
 package collections.map.task.users;
 
 public class User {
-    private final Gender gender;
+    private final String login;
+    private final String gender;
     private final int age;
     private final String password;
 
-    public User(Gender gender, int age, String password) {
+    public User(String login, String gender, int age, String password) {
+        this.login = login;
         this.gender = gender;
         this.age = age;
         this.password = password;
     }
 
-    public Gender getGender() {
+    public String getLogin() {
+        return login;
+    }
+
+    public String getGender() {
         return gender;
     }
 
