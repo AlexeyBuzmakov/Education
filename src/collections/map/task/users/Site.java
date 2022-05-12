@@ -15,7 +15,8 @@ public class Site {
     private void createRepository() {
         int count = repository.getRepository().size();
         while (count < 10) {
-            repository.getRepository().put(generateLogin(), generateUser());
+            User user = generateUser();
+            repository.getRepository().put(user.getLogin(), user);
             count++;
         }
     }
@@ -86,12 +87,12 @@ public class Site {
         System.out.println("Введите пароль (6 символов");
         String password = createPassword();
         User user = createUser(login ,gender, age, password);
-        addUser(user.getLogin(), user);
+        addUser(user);
         System.out.println("Поздравляем! Пользователь зарегистрирован");
     }
 
-    private void addUser(String login, User user) {
-        repository.getRepository().put(login, user);
+    private void addUser(User user) {
+        repository.getRepository().put(user.getLogin(), user);
     }
 
     private User createUser(String login, String gender, int age, String password) {
@@ -114,6 +115,10 @@ public class Site {
 
     private String indicateGender() {
         Scanner scanner = new Scanner(System.in);
+        if(!scanner.hasNextInt()) {
+            System.out.println("Некорректный ввод");
+            indicateGender();
+        }
         switch(scanner.nextInt()) {
             case 1: return "Male";
             case 2: return "Female";
@@ -126,13 +131,17 @@ public class Site {
 
     private int indicateAge() {
         Scanner scanner = new Scanner(System.in);
-        if(scanner.hasNextInt()) {
-            return scanner.nextInt();
+        if (scanner.hasNextInt()) {
+            int age = scanner.nextInt();
+            if (age > 0) {
+                return age;
+            }
         }
         System.out.println("Некорректный ввод");
         indicateAge();
         return 0;
     }
+
 
     private String createPassword() {
         Scanner scanner = new Scanner(System.in);
@@ -159,7 +168,7 @@ public class Site {
     }
 
     private void showInfoCurrentUser() {
-        System.out.println("Пол:" + utils.getCurrentUser().getGender() + " Возраст:" + utils.getCurrentUser().getAge());
+        System.out.println("Логин:"+ utils.getCurrentUser().getLogin() + " Пол:" + utils.getCurrentUser().getGender() + " Возраст:" + utils.getCurrentUser().getAge());
     }
 
 

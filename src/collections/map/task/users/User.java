@@ -31,6 +31,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "Пароль: " + password + " Пол: " + gender + " Возраст: " + age;
+        return password + " Пол: " + gender + " Возраст: " + age;
     }
 }
