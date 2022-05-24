@@ -1,61 +1,83 @@
 package collections.tree;
 
-import java.util.Comparator;
-import java.util.Objects;
-
-public class TreeSet<T>{
+public class TreeSet<T extends Comparable<T>>  {
     private Node<T> root;
     private int size;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        TreeSet<?> treeSet = (TreeSet<?>) o;
-        return Objects.equals(root, treeSet.root);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(root);
-    }
-
-    private static class Node<T> implements Comparator<Node<T>> {
+    private static class Node<T> {
         T element;
+        Node<T>upper;
         Node<T>left;
         Node<T>right;
 
         public Node(T element) {
             this.element = element;
         }
-
-        public Node<T> getLeft() {
-            return left;
-        }
-
-        public Node<T> getRight() {
-            return right;
-        }
-
-
-        @Override
-        public int compare(Node<T> o1, Node<T> o2) {
-            return Integer.compare(o1.element, o2.getLeft());
-        }
     }
 
     public void add(T element) {
-        Node<T> newNode = new Node<>(element);
+        Node<T>newNode = new Node<>(element);
         if(size == 0) {
-           root = newNode;
+            root = newNode;
+            size++;
         }
-        else{
-            while(true) {
-                if() {
+        Node<T>current = root;
+        while (true) {
+            if (element.compareTo(current.element) < 0) {
+                if (current.left != null) {
+                    current = current.left;
+                    continue;
+                }
+                current.left = newNode;
+                size++;
+                break;
+            }
+            if (element.compareTo(current.element) > 0) {
+                if (current.right != null) {
+                    current = current.right;
+                    continue;
+                }
+                current.right = newNode;
+                size++;
+                break;
+            } else {
+                break;
+            }
+        }
+    }
 
+    public boolean contains(T element) {
+        if (size != 0) {
+            Node<T> current = root;
+            while (current.left != null && current.right != null) {
+                System.out.println(current.element);
+                if (current.element == element) {
+                    return true;
+                }
+                if (element.compareTo(current.element) < 0) {
+                    current = current.left;
+                    continue;
+                }
+                if (element.compareTo(current.element) > 0) {
+                    current = current.right;
                 }
             }
         }
+        return false;
+    }
 
+
+
+
+    private Node<T> lowerLeftElement() {
+        if(size != 0) {
+            Node<T>current = root;
+           while(current.left != null) {
+               current = current.left;
+           }
+           return current;
+        }
+        return null;
     }
 }
+
