@@ -6,7 +6,6 @@ public class TreeSet<T extends Comparable<T>>  {
 
     private static class Node<T> {
         T element;
-        Node<T>upper;
         Node<T>left;
         Node<T>right;
 
@@ -22,62 +21,116 @@ public class TreeSet<T extends Comparable<T>>  {
             size++;
         }
         Node<T>current = root;
-        while (true) {
+        while (current.element != element) {
             if (element.compareTo(current.element) < 0) {
                 if (current.left != null) {
                     current = current.left;
-                    continue;
+                } else {
+                    current.left = newNode;
+                    size++;
+                    break;
                 }
-                current.left = newNode;
-                size++;
-                break;
-            }
-            if (element.compareTo(current.element) > 0) {
+            } else if (element.compareTo(current.element) > 0) {
                 if (current.right != null) {
                     current = current.right;
-                    continue;
+                } else {
+                    current.right = newNode;
+                    size++;
+                    break;
                 }
-                current.right = newNode;
-                size++;
-                break;
-            } else {
-                break;
             }
         }
     }
 
-    public boolean contains(T element) {
-        if (size != 0) {
-            Node<T> current = root;
-            while (current.left != null && current.right != null) {
-                System.out.println(current.element);
-                if (current.element == element) {
-                    return true;
-                }
-                if (element.compareTo(current.element) < 0) {
-                    current = current.left;
-                    continue;
-                }
-                if (element.compareTo(current.element) > 0) {
-                    current = current.right;
-                }
+    public boolean remove(T element) {
+        if (size == 0) {
+            return false;
+        }
+        Node<T> parrent = root;
+        Node<T> current = root;
+        while (current.element != element) {
+            if (element.compareTo(current.element) < 0) {
+                parrent = current;
+                current = current.left;
+            } else if (element.compareTo(current.element) > 0) {
+                parrent = current;
+                current = current.right;
+            }
+            if (current == null) {
+                return false;
             }
         }
+
+        if (current.right == null && current.left == null) {                     //0 потомков
+            if (element.compareTo(parrent.element) < 0) {
+                parrent.left = null;
+            } else {
+                parrent.right = null;
+            }
+            size--;
+            return true;
+        }
+
+        if (current.right == null || current.left == null) {                     //1 потомок
+            if (current.left != null) {
+                parrent.left = current.left;
+            } else {
+                parrent.right = current.right;
+            }
+            size--;
+            return true;
+        }
+
+        Node<T>buf = current;                                                   //2 потомка
+        buf = buf.right;
+        while(buf.left != null) {
+            buf = buf.left;
+        }
+        if (current.element.compareTo(buf.element) > current.element.compareTo(current.right.element)) {
+            if(parrent.right.element.compareTo(current.element) == 0) {
+                parrent.right = current.right;
+            }
+            else {
+                parrent.left = current.right;
+            }
+        }
+        else {
+            current.element = buf.element;
+        }
+        size--;
+
         return false;
     }
 
-
-
-
-    private Node<T> lowerLeftElement() {
-        if(size != 0) {
-            Node<T>current = root;
-           while(current.left != null) {
-               current = current.left;
-           }
-           return current;
+    public boolean contains(T element) {
+        if (size == 0) {
+            return false;
         }
-        return null;
+        Node<T> current = root;
+        while (current.element != element) {
+            if (element.compareTo(current.element) < 0) {
+                current = current.left;
+            } else if (element.compareTo(current.element) > 0) {
+                current = current.right;
+            }
+            if (current == null) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void printTree() {
+        inOrder(root);
+
+    }
+
+    private void inOrder(Node<T> current) {
+        if (current != null) {
+            inOrder(current.left);
+            System.out.println(current.element);
+            inOrder(current.right);
+        }
     }
 }
 
