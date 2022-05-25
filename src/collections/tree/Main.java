@@ -15,9 +15,9 @@ public class Main {
         treeSet.add(51);
         treeSet.add(116);
 
-//        System.out.println(treeSet.contains(800));
+        System.out.println(treeSet.contains(38));
 
-        treeSet.remove(33);
+        System.out.println(treeSet.remove(64));
 
         treeSet.printTree();
 

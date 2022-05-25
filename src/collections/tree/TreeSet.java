@@ -81,25 +81,34 @@ public class TreeSet<T extends Comparable<T>>  {
             return true;
         }
 
-        Node<T>buf = current;                                                   //2 потомка
-        buf = buf.right;
+        Node<T>buf = current.right;                                             //2 потомка
+        Node<T>bufDelLeft = buf;
         while(buf.left != null) {
+            if(buf.left.left == null) {
+                bufDelLeft.left = buf;
+            }
             buf = buf.left;
         }
-        if (current.element.compareTo(buf.element) > current.element.compareTo(current.right.element)) {
-            if(parrent.right.element.compareTo(current.element) == 0) {
-                parrent.right = current.right;
-            }
-            else {
-                parrent.left = current.right;
-            }
+
+        if(current.right.left == null) {
+           Node<T>buf2 = current.left;
+           if(parrent.right == current) {
+               current = current.right;
+               parrent.right = current;
+               current.left = buf2;
+           }
+           else {
+               current = current.right;
+               parrent.left = current;
+               current.left = buf2;
+           }
         }
         else {
             current.element = buf.element;
+            bufDelLeft.left = null;
         }
         size--;
-
-        return false;
+        return true;
     }
 
     public boolean contains(T element) {
