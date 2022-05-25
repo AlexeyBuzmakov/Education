@@ -6,21 +6,22 @@ public class TreeSet<T extends Comparable<T>>  {
 
     private static class Node<T> {
         T element;
-        Node<T>left;
-        Node<T>right;
+        Node<T> left;
+        Node<T> right;
 
         public Node(T element) {
             this.element = element;
         }
     }
 
+
     public void add(T element) {
-        Node<T>newNode = new Node<>(element);
-        if(size == 0) {
+        Node<T> newNode = new Node<>(element);
+        if (size == 0) {
             root = newNode;
             size++;
         }
-        Node<T>current = root;
+        Node<T> current = root;
         while (current.element != element) {
             if (element.compareTo(current.element) < 0) {
                 if (current.left != null) {
@@ -41,6 +42,7 @@ public class TreeSet<T extends Comparable<T>>  {
             }
         }
     }
+
 
     public boolean remove(T element) {
         if (size == 0) {
@@ -81,35 +83,34 @@ public class TreeSet<T extends Comparable<T>>  {
             return true;
         }
 
-        Node<T>buf = current.right;                                             //2 потомка
-        Node<T>bufDelLeft = buf;
-        while(buf.left != null) {
-            if(buf.left.left == null) {
+        Node<T> buf = current.right;                                             //2 потомка
+        Node<T> bufDelLeft = buf;
+        while (buf.left != null) {
+            if (buf.left.left == null) {
                 bufDelLeft.left = buf;
             }
             buf = buf.left;
         }
 
-        if(current.right.left == null) {
-           Node<T>buf2 = current.left;
-           if(parrent.right == current) {
-               current = current.right;
-               parrent.right = current;
-               current.left = buf2;
-           }
-           else {
-               current = current.right;
-               parrent.left = current;
-               current.left = buf2;
-           }
-        }
-        else {
+        if (current.right.left == null) {
+            Node<T> buf2 = current.left;
+            if (parrent.right == current) {
+                current = current.right;
+                parrent.right = current;
+                current.left = buf2;
+            } else {
+                current = current.right;
+                parrent.left = current;
+                current.left = buf2;
+            }
+        } else {
             current.element = buf.element;
             bufDelLeft.left = null;
         }
         size--;
         return true;
     }
+
 
     public boolean contains(T element) {
         if (size == 0) {
