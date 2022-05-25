@@ -17,7 +17,7 @@ public class Converter {
     }
 
     public StringBuilder convert(int num) {
-        if(num < 0) {
+        if(num <= 0) {
             return new StringBuilder("Некорректный ввод");
         }
         createConverter();
