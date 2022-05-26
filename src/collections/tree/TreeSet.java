@@ -4,10 +4,14 @@ public class TreeSet<T extends Comparable<T>>  {
     private Node<T> root;
     private int size;
 
-    private static class Node<T> {
-        T element;
-        Node<T> left;
-        Node<T> right;
+    public Node<T> getRoot() {
+        return root;
+    }
+
+    public static class Node<T> {
+        public T element;
+        public Node<T> left;
+        public Node<T> right;
 
         public Node(T element) {
             this.element = element;
@@ -74,38 +78,47 @@ public class TreeSet<T extends Comparable<T>>  {
         }
 
         if (current.right == null || current.left == null) {                     //1 потомок
-            if (current.left != null) {
-                parrent.left = current.left;
-            } else {
-                parrent.right = current.right;
+            if(parrent.left == current) {
+                if (current.right != null) {
+                    parrent.left = current.right;
+                } else {
+                    parrent.left = current.left;
+                }
+            }
+            else {
+                if (current.right != null) {
+                    parrent.right = current.right;
+                } else {
+                    parrent.right = current.left;
+                }
             }
             size--;
             return true;
         }
 
         Node<T> buf = current.right;                                             //2 потомка
-        Node<T> bufDelLeft = buf;
-        while (buf.left != null) {
-            if (buf.left.left == null) {
-                bufDelLeft.left = buf;
-            }
-            buf = buf.left;
-        }
-
-        if (current.right.left == null) {
-            Node<T> buf2 = current.left;
-            if (parrent.right == current) {
-                current = current.right;
-                parrent.right = current;
-                current.left = buf2;
+        if (parrent.right == current) {
+            if (current.right.left == null) {
+                parrent.right = current.right;
+                parrent.right.left = current.left;
             } else {
-                current = current.right;
-                parrent.left = current;
-                current.left = buf2;
+                while (buf.left.left != null) {
+                    buf = buf.left;
+                }
+                current.element = buf.left.element;
+                buf.left = null;
             }
         } else {
-            current.element = buf.element;
-            bufDelLeft.left = null;
+            if (current.right.left == null) {
+                parrent.left = current.right;
+                parrent.left.left = current.left;
+            } else {
+                while (buf.left.left != null) {
+                    buf = buf.left;
+                }
+                current.element = buf.left.element;
+                buf.left = null;
+            }
         }
         size--;
         return true;

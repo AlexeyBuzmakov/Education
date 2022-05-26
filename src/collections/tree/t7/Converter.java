@@ -8,11 +8,17 @@ public class Converter {
 
     private void createConverter() {
         numb.put(1, "I");
+        numb.put(4, "IV");
         numb.put(5, "V");
+        numb.put(9, "IX");
         numb.put(10, "X");
+        numb.put(40, "XL");
         numb.put(50, "L");
+        numb.put(90, "XC");
         numb.put(100, "C");
+        numb.put(400, "CD");
         numb.put(500, "D");
+        numb.put(900, "CM");
         numb.put(1000, "M");
     }
 
@@ -23,19 +29,8 @@ public class Converter {
         createConverter();
         StringBuilder str = new StringBuilder();
         while (num != 0) {
-            if (num < 1000 && num > 100 && numb.higherKey(num) - num <= 100) {
-                str.append(numb.get(100)).append(numb.get(numb.ceilingKey(num)));
-                num -= numb.ceilingKey(num) - 100;
-            } else if (num < 100 && num > 10 && numb.higherKey(num) - num <= 10) {
-                str.append(numb.get(10)).append(numb.get(numb.ceilingKey(num)));
-                num -= numb.ceilingKey(num) - 10;
-            } else if (num < 10 && numb.higherKey(num) - num == 1) {
-                str.append(numb.get(1)).append(numb.get(numb.ceilingKey(num)));
-                num -= numb.ceilingKey(num) - 1;
-            } else {
-                str.append(numb.get(numb.floorKey(num)));
-                num -= numb.floorKey(num);
-            }
+            str.append(numb.get(numb.floorKey(num)));
+            num -= numb.floorKey(num);
         }
         return str;
     }

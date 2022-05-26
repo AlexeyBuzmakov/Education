@@ -37,20 +37,19 @@ class HashMap<K, V> {
 
     public void put(K key, V value) {
         int index = key.hashCode() & capacity - 1;
-        Entry<K, V>entry = new Entry<>(key, value);
-        if(table[index].size() == 0) {
+        Entry<K, V> entry = new Entry<>(key, value);
+        if (table[index].size() == 0) {
             table[index].addFirst(entry);
             size++;
+            return;
         }
-        else {
-            for(Entry<K, V> entries : table[index]) {
-                if(entries.key.hashCode() == key.hashCode() && entries.key.equals(key)) {
-                    entries.value = value;
-                    break;
-                }
-                table[index].addLast(entry);
-                size++;
+        for (Entry<K, V> entries : table[index]) {
+            if (entries.key.hashCode() == key.hashCode() && entries.key.equals(key)) {
+                entries.value = value;
+                break;
             }
+            table[index].addLast(entry);
+            size++;
         }
         rehashing();
     }
@@ -95,7 +94,7 @@ class HashMap<K, V> {
     @SuppressWarnings("unchecked")
     private void rehashing() {
         if (checkLoadFactor()) {
-            grow();
+            capacity *= 2;
             LinkedList<Entry<K, V>>[] newTable = new LinkedList[capacity];
             for (int i = 0; i < capacity; i++) {
                 newTable[i] = new LinkedList<>();
@@ -114,10 +113,6 @@ class HashMap<K, V> {
 
     private boolean checkLoadFactor() {
         return (float) size / capacity >= LOAD_FACTOR;
-    }
-
-    private void grow() {
-        capacity *= 2;
     }
 
     public void printTable() {
