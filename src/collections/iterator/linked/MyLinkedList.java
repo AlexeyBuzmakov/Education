@@ -22,30 +22,30 @@ public class MyLinkedList<T> implements Iterable<T> {
     }
 
     private class Iter implements Iterator<T> {
-        int cursor;
-        int lastReturned;
+        Node<T> cursor = first;
+        Node<T> lastReturned;
 
         @Override
         public boolean hasNext() {
-            return cursor != size;
+            return cursor != null;
         }
 
         @Override
         public T next() {
-            if(cursor >= size) {
+            if(cursor == null) {
                 throw new NoSuchElementException();
             }
-            lastReturned = cursor++;
-            return MyLinkedList.this.get(lastReturned);
-        }
+            lastReturned = cursor;
+            cursor = cursor.next;
+            return lastReturned.element;
+       }
 
         public void remove() {
-            if(lastReturned < 0) {
+            if(lastReturned == null) {
                 throw new IllegalStateException();
             }
-            MyLinkedList.this.remove(lastReturned);
             cursor = lastReturned;
-            lastReturned = -1;
+            lastReturned = null;
         }
     }
 
@@ -88,32 +88,5 @@ public class MyLinkedList<T> implements Iterable<T> {
         }
         current.next = new Node<>(element);
         size++;
-    }
-
-    public T get(int index) {
-        if(index >= size || index < 0) {
-            throw new ArrayIndexOutOfBoundsException("Некорректный ввод индекса");
-        }
-        Node<T> current = first;
-        while(index > 0) {
-            current = current.next;
-            index--;
-        }
-        return current.element;
-    }
-
-    public void remove(int index) {
-        if (size == 0 || index > size) {
-            return;
-        }
-        Node<T> parent = first;
-        Node<T> current = first;
-        while (index > 0) {
-            parent = current;
-            current = current.next;
-            index--;
-        }
-        parent.next = current.next;
-        size--;
     }
 }
