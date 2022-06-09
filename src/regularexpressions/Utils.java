@@ -23,7 +23,7 @@ public class Utils {
     }
 
     public static void fiveLatters(String str) {
-        String[]words = str.split("\\W");
+        String[]words = str.split(" +");
         for(String word : words) {
             if(word.matches("\\w{5}")) {
                 System.out.print(word + " | ");
@@ -49,9 +49,10 @@ public class Utils {
     public static void nonHyphen(String str) {
         String[]words = str.split(" +");
         for(String word : words) {
-            if(word.matches("^-")) {
-                System.out.print(word + " | ");
+            if(word.matches("\\w*-\\w*")) {
+               continue;
             }
+            System.out.print(word + " | ");
         }
         System.out.println();
     }
