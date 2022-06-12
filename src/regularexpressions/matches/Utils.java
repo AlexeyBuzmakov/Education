@@ -1,8 +1,8 @@
-package regularexpressions;
+package regularexpressions.matches;
 
 public class Utils {
 
-    public static void fiveSymbols(String str) {
+    public static void getWordsFromFiveSymbols(String str) {
         String[]words = str.split(" +");
         for(String word : words) {
             if(word.matches(".{5}")) {
@@ -12,7 +12,7 @@ public class Utils {
         System.out.println();
     }
 
-    public static void twoFiveSymbols(String str) {
+    public static void getWordsFromTwoToFiveSymbols(String str) {
         String[]words = str.split(" +");
         for(String word : words) {
             if(word.matches(".{2,5}")) {
@@ -22,7 +22,7 @@ public class Utils {
         System.out.println();
     }
 
-    public static void fiveLatters(String str) {
+    public static void getWordsFromFiveLetters(String str) {
         String[]words = str.split(" +");
         for(String word : words) {
             if(word.matches("\\w{5}")) {
@@ -32,7 +32,7 @@ public class Utils {
         System.out.println();
     }
 
-    public static void numbers(String str) {
+    public static void getNumbers(String str) {
         String[]numbers = str.split(" +");
         for(String number : numbers) {
             if(number.matches("\\d+\\.?\\d*")) {
@@ -46,18 +46,17 @@ public class Utils {
         return str.matches(".{1,10}@(g?mail|yandex)\\.ru");
     }
 
-    public static void nonHyphen(String str) {
+    public static void getWordsWithoutHyphen(String str) {
         String[]words = str.split(" +");
         for(String word : words) {
-            if(word.matches("\\w*-\\w*")) {
-               continue;
+            if(word.matches("[^-]")) {
+                System.out.print(word + " | ");
             }
-            System.out.print(word + " | ");
         }
         System.out.println();
     }
 
-    public void file(String str) {
+    public static void getFilesName(String str) {
         String[]words = str.split(" +");
         for(String word : words) {
             if(word.matches("(file|filwfad)\\.(exe|txt|zip)")) {
@@ -67,17 +66,8 @@ public class Utils {
         System.out.println();
     }
 
-    public static StringBuilder replaceNumbers(String str) {
-        StringBuilder newStr = new StringBuilder();
-        String[]words = str.split(" +");
-        for(String word : words) {
-            if(word.matches("\\d+\\.?\\d*")) {
-               newStr.append("Цифра").append(" ");
-               continue;
-            }
-            newStr.append(word).append(" ");
-        }
-        return newStr;
+    public static String replaceNumbersWithLetters(String str) {
+        return str.replaceAll("\\d+\\.?\\d*", "Цифра");
     }
 
     public static boolean validatorUrl(String str) {
