@@ -24,15 +24,16 @@ public class Utils {
     }
 
     public static boolean validatorIP(String str) {
-        return str.matches("[0-255]\\.[0-255]\\.[0-255]\\.[0-255]");
+        return str.matches("([1-9]|\\d\\d|1\\d\\d|2[0-4]\\d?|25[0-5]?)\\.(\\d|\\d\\d|1\\d\\d|2[0-4]\\d?|25[0-5]?)\\." +
+                "(\\d|\\d\\d|1\\d\\d|2[0-4]\\d?|25[0-5]?)\\.(\\d|\\d\\d|1\\d\\d|2[0-4]\\d?|25[0-5]?)");
     }
 
     public static boolean validatorPasswordStandard(String str) {
-        return str.matches("(?=.*\\d)+(?=.*([a-z]|[A-Z])+(?=.*[^\\w])+).{5,25}");
+        return str.matches("(?=.*\\d)(?=.*([a-z]|[A-Z]))(?=.*[^\\w]).{5,25}");
     }
 
     public static boolean validatorPasswordWithoutExclamationPoint(String str) {
-        return str.matches("(?!.*!)(?=.*\\d)+(?=.*([a-z]|[A-Z])+(?=.*[^\\w])+).{5,25}");
+        return str.matches("(?!.*!)(?=.*\\d)(?=.*([a-z]|[A-Z]))(?=.*[^\\w]).{5,25}");
     }
 
     public static void replaceDotsCommasNewlineCharacter(String str) {

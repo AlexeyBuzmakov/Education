@@ -2,7 +2,7 @@ package regularexpressions.matcherandpattern;
 
 public class Main {
     public static void main(String[] args) {
-        String str = "Li515*. sfjsd!, fj23u2. fs23@";
+        String str = "156.26.49.155";
 
         System.out.println(Utils.replaceNumbersWithLettersWayOne(str));
         System.out.println(Utils.replaceNumbersWithLettersWayTwo(str));
