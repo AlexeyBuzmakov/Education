@@ -2,50 +2,50 @@ package streamsinputoutput;
 
 import collections.list.LinkedList;
 import collections.list.List;
-
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Utils {
 
-    public static void inputOutputUsingByteStreams(String str) {                                                     //1
-        try (OutputStream os = new FileOutputStream("File.txt")){
-            os.write(str.getBytes(StandardCharsets.UTF_8));
+    public static void inputOutputUsingByteStreams() {                                                               //1
+        try (OutputStream fos = new FileOutputStream("FileUsingByteStreams.txt")){
+            fos.write("Russia".getBytes());
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        try (InputStream is = new FileInputStream("File.txt")){
-            System.out.println(new String(is.readAllBytes()));
+        try (InputStream fis = new FileInputStream("FileUsingByteStreams.txt")){
+            System.out.println(new String(fis.readAllBytes()));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public static void inputOutputUsingBufferedByteStreams(String str) {                                             //2
-        try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream("File.txt"));){
-            bos.write(str.getBytes(StandardCharsets.UTF_8));
+    public static void inputOutputUsingBufferedByteStreams() {                                                       //2
+        try (OutputStream bos = new BufferedOutputStream(new FileOutputStream("FileUsingBufferedByteStreams.txt"))){
+            bos.write("Russia".getBytes());
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream("File.txt"));){
+        try (InputStream bis = new BufferedInputStream(new FileInputStream("FileUsingBufferedByteStreams.txt"))){
             System.out.println(new String(bis.readAllBytes()));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public static void inputOutputUsingCharacterStreams(String str) {                                                //3
-        try (FileWriter fw = new FileWriter("File.txt")){
-            fw.write(str);
+    public static void inputOutputUsingCharacterStreams() {                                                          //3
+        try (Writer fw = new FileWriter("FileUsingCharacterStreams.txt")){
+            fw.write("Russia");
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        try (FileReader fr = new FileReader("File.txt")){
+        try (Reader fr = new FileReader("FileUsingCharacterStreams.txt")){
             int c;
             while((c = fr.read()) != -1) {
                 System.out.print((char)c);
@@ -53,17 +53,16 @@ public class Utils {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println();
     }
 
-    public static void inputOutputUsingBufferedCharacterStreams(String str) {                                        //4
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("File.txt"));){
-            bw.write(str);
+    public static void inputOutputUsingBufferedCharacterStreams() {                                                  //4
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("FileUsingBufferedCharacterStreams.txt"))){
+            bw.write("Russia");
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        try (BufferedReader br = new BufferedReader(new FileReader("File.txt"))){
+        try (BufferedReader br = new BufferedReader(new FileReader("FileUsingBufferedCharacterStreams.txt"))){
             String line;
             while ((line = br.readLine()) != null) {
                 System.out.println(line);
@@ -74,12 +73,12 @@ public class Utils {
     }
 
     public static void inputOutputMatrix(int[][]matrix) {                                                            //6
-        try (DataOutputStream dos = new DataOutputStream(new FileOutputStream("Matrix.txt"));){
+        try (DataOutputStream dos = new DataOutputStream(new FileOutputStream("Matrix.txt"))){
             for(int i = 0; i < matrix.length; i++) {
                 for(int j = 0; j < matrix[i].length; j++) {
                     dos.writeInt(matrix[i][j]);
                 }
-                System.out.println();
+                dos.writeBytes("\n");
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -98,12 +97,13 @@ public class Utils {
     }
 
     public static void inputOutputStudents() {                                                                       //7
-        try (BufferedReader br = new BufferedReader(new FileReader("C://Users//alexe//Desktop//Students.txt"))){
-            List<String>students = new LinkedList<>();
+        List<String>students = new LinkedList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader("Students.txt"))){
             String line;
             while((line = br.readLine()) != null) {
                 students.addLast(line);
             }
+            System.out.println(students);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -111,39 +111,133 @@ public class Utils {
 
     public static void sortingFileWordsIntoDifferentFiles() {                                                        //8
         String line = null;
-        try (BufferedReader br = new BufferedReader(new FileReader("C://Users//alexe//Desktop//Words.txt"))){
+        try (BufferedReader br = new BufferedReader(new FileReader("Words.txt"))){
+            line = br.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        String[]words = line.split("[ ,.-]");
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("WordsStartCapitalLetter.txt"))){
+            for(String word : words) {
+                if(word.matches("[A-Z].*")) {
+                    bw.write(word);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("FiveCharacterWords.txt"))){
+            for(String word : words) {
+                if(word.matches(".{5}")) {
+                    bw.write(word);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("WithoutCapitalLettersNumberWords.txt"))){
+            for(String word : words) {
+                if(word.matches("(?!.*[\\d[A-Z]]).*")) {
+                    bw.write(word);
+                    System.out.println(word);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void outputOrderedArray(double[][]array) {                                                         //9
+        try (DataOutputStream dos = new DataOutputStream(new FileOutputStream("OrderedArrayDouble.txt"))){
+            double totalSum = 0;
+            int totalCountElement = 0;
+            dos.write("Ряд Сумма  Значение".getBytes());
+            dos.writeBytes("\n");
+            for(int i = 0; i < array.length; i++) {
+                double sum = 0;
+                for(int j = 0; j < array[i].length; j++) {
+                    sum += array[i][j];
+                }
+                dos.writeBytes(i + 1 + "   " + sum + "   " + sum/array[i].length + "\n");
+                totalSum += sum;
+                totalCountElement += array[i].length;
+            }
+            dos.write("Количество элементов: ".getBytes());
+            dos.writeBytes(totalCountElement + "");
+            dos.writeBytes("\n");
+            dos.write("Сумма элементов: ".getBytes());
+            dos.writeBytes(totalSum + "");
+            dos.writeBytes("\n");
+            dos.write("Среднее значение элементов: ".getBytes());
+            dos.writeBytes(totalSum/totalCountElement + "");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try (BufferedReader br = new BufferedReader(new FileReader("OrderedArrayDouble.txt"))){
+            String line;
             while((line = br.readLine()) != null) {
                 System.out.println(line);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("WordsStartCapitalLetter"))){
-            Pattern pattern = Pattern.compile("[A-Z].*?( |$)");
-            Matcher matcher = pattern.matcher(line);
-            while(matcher.find()) {
-                bw.write(matcher.group());
+    public static void InputOutputReverseArray(int[]array) {                                                        //10
+        try (DataOutputStream dos = new DataOutputStream(new FileOutputStream("ReverseArray.txt"))){
+            for(int i = array.length - 1; i >=0; i--) {
+                dos.writeInt(array[i]);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("FiveCharacterWords"))){
-            Pattern pattern = Pattern.compile(".{5}");
-            Matcher matcher = pattern.matcher(line);
-            while(matcher.find()) {
-                bw.write(matcher.group());
+        try (DataInputStream dis = new DataInputStream(new FileInputStream("ReverseArray.txt"))){
+            for(int i = 0; i < array.length; i++) {
+                System.out.print(dis.readInt() + " ");
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("WithoutCapitalLettersNumberWords"))){
-            Pattern pattern = Pattern.compile(".*(?![A-Z])(?!\\d) ");
-            Matcher matcher = pattern.matcher(line);
-            while(matcher.find()) {
-                bw.write(matcher.group());
+    public static void splitBigNumber() {                                                                           //11
+        String line = null;
+        try (BufferedReader br = new BufferedReader(new FileReader("BigNumber.txt"))){
+            line = br.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Map<Integer, Integer>map = new LinkedHashMap<>();
+        int index = 0;
+        while(index != line.length()) {
+            int number = line.charAt(index) - '0';
+            if(map.containsKey(number)) {
+                map.put(number, map.get(number) + 1);
+                index++;
+                continue;
+            }
+            map.put(number, 1);
+            index++;
+        }
+
+        Set<Map.Entry<Integer, Integer>> entries = map.entrySet();
+        for(Map.Entry<Integer, Integer>entry : entries) {
+            System.out.println("Число: " + entry.getKey() + " Повторений: " + entry.getValue());
+        }
+    }
+
+    public static void correctionErrorReadRussianLanguage() {
+        try (FileInputStream fis = new FileInputStream("TextInRussian.txt")) {
+            int c;
+            while ((c = fis.read()) != -1) {
+                String symbol = (char)c + "";
             }
         } catch (IOException e) {
             e.printStackTrace();
