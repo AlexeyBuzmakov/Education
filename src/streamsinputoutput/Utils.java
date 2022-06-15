@@ -1,24 +1,21 @@
 package streamsinputoutput;
 
 import collections.list.ArrayList;
-import collections.list.LinkedList;
 import collections.list.List;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Utils {
 
     public static void inputOutputUsingByteStreams() {                                                               //1
-        try (OutputStream fos = new FileOutputStream("FileUsingByteStreams.txt")){
+        try (OutputStream fos = new FileOutputStream("Files/FileUsingByteStreams.txt")){
             fos.write("Russia".getBytes());
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        try (InputStream fis = new FileInputStream("FileUsingByteStreams.txt")){
+        try (InputStream fis = new FileInputStream("Files/FileUsingByteStreams.txt")){
             System.out.println(new String(fis.readAllBytes()));
         } catch (IOException e) {
             e.printStackTrace();
@@ -26,13 +23,13 @@ public class Utils {
     }
 
     public static void inputOutputUsingBufferedByteStreams() {                                                       //2
-        try (OutputStream bos = new BufferedOutputStream(new FileOutputStream("FileUsingBufferedByteStreams.txt"))){
+        try (OutputStream bos = new BufferedOutputStream(new FileOutputStream("Files/FileUsingBufferedByteStreams.txt"))){
             bos.write("Russia".getBytes());
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        try (InputStream bis = new BufferedInputStream(new FileInputStream("FileUsingBufferedByteStreams.txt"))){
+        try (InputStream bis = new BufferedInputStream(new FileInputStream("Files/FileUsingBufferedByteStreams.txt"))){
             System.out.println(new String(bis.readAllBytes()));
         } catch (IOException e) {
             e.printStackTrace();
@@ -40,13 +37,13 @@ public class Utils {
     }
 
     public static void inputOutputUsingCharacterStreams() {                                                          //3
-        try (Writer fw = new FileWriter("FileUsingCharacterStreams.txt")){
+        try (Writer fw = new FileWriter("Files/FileUsingCharacterStreams.txt")){
             fw.write("Russia");
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        try (Reader fr = new FileReader("FileUsingCharacterStreams.txt")){
+        try (Reader fr = new FileReader("Files/FileUsingCharacterStreams.txt")){
             int c;
             while((c = fr.read()) != -1) {
                 System.out.print((char)c);
@@ -57,13 +54,13 @@ public class Utils {
     }
 
     public static void inputOutputUsingBufferedCharacterStreams() {                                                  //4
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("FileUsingBufferedCharacterStreams.txt"))){
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("Files/FileUsingBufferedCharacterStreams.txt"))){
             bw.write("Russia");
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        try (BufferedReader br = new BufferedReader(new FileReader("FileUsingBufferedCharacterStreams.txt"))){
+        try (BufferedReader br = new BufferedReader(new FileReader("Files/FileUsingBufferedCharacterStreams.txt"))){
             String line;
             while ((line = br.readLine()) != null) {
                 System.out.println(line);
@@ -74,7 +71,7 @@ public class Utils {
     }
 
     public static void inputOutputPrimitives() {                                                                     //5
-        try (DataOutputStream dos = new DataOutputStream(new FileOutputStream("Primitives.txt"))){
+        try (DataOutputStream dos = new DataOutputStream(new FileOutputStream("Files/Primitives.txt"))){
             dos.writeByte(127);
             dos.writeShort(16873);
             dos.writeInt(228752);
@@ -86,7 +83,7 @@ public class Utils {
             e.printStackTrace();
         }
 
-        try (DataInputStream dis = new DataInputStream(new FileInputStream("Primitives.txt"))){
+        try (DataInputStream dis = new DataInputStream(new FileInputStream("Files/Primitives.txt"))){
             System.out.println(dis.readByte());
             System.out.println(dis.readShort());
             System.out.println(dis.readInt());
@@ -101,7 +98,7 @@ public class Utils {
 
     public static void inputOutputMatrix(int[][]matrix) {                                                            //6
         StringBuilder str = new StringBuilder();
-        try (BufferedWriter dos = new BufferedWriter(new FileWriter("Matrix.txt"))){
+        try (BufferedWriter dos = new BufferedWriter(new FileWriter("Files/Matrix.txt"))){
             for(int i = 0; i < matrix.length; i++) {
                 for(int j = 0; j < matrix[i].length; j++) {
                     str.append(matrix[i][j]).append(" ");
@@ -113,7 +110,7 @@ public class Utils {
             e.printStackTrace();
         }
 
-        try (BufferedReader bw = new BufferedReader(new FileReader("Matrix.txt"))){
+        try (BufferedReader bw = new BufferedReader(new FileReader("Files/Matrix.txt"))){
             String line;
             while((line = bw.readLine()) != null) {
                 System.out.println(line);
@@ -125,7 +122,7 @@ public class Utils {
 
     public static void inputOutputStudents() {                                                                       //7
         List<Students>students = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader("Students.txt"))){
+        try (BufferedReader br = new BufferedReader(new FileReader("Files/Students.txt"))){
             String line;
             while((line = br.readLine()) != null) {
                 String[]dateStudents = line.split("[- ]+");
@@ -140,7 +137,7 @@ public class Utils {
 
     public static void sortingFileWordsIntoDifferentFiles() {                                                        //8
         String line = null;
-        try (BufferedReader br = new BufferedReader(new FileReader("Words.txt"))){
+        try (BufferedReader br = new BufferedReader(new FileReader("Files/Words.txt"))){
             line = br.readLine();
         } catch (IOException e) {
             e.printStackTrace();
@@ -148,7 +145,7 @@ public class Utils {
 
         String[]words = line.split("[ ,.-]");
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("WordsStartCapitalLetter.txt"))){
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("Files/WordsStartCapitalLetter.txt"))){
             for(String word : words) {
                 if(word.matches("[A-Z].*")) {
                     bw.write(word);
@@ -158,7 +155,7 @@ public class Utils {
             e.printStackTrace();
         }
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("FiveCharacterWords.txt"))){
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("Files/FiveCharacterWords.txt"))){
             for(String word : words) {
                 if(word.matches(".{5}")) {
                     bw.write(word);
@@ -168,7 +165,7 @@ public class Utils {
             e.printStackTrace();
         }
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("WithoutCapitalLettersNumberWords.txt"))){
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("Files/WithoutCapitalLettersNumberWords.txt"))){
             for(String word : words) {
                 if(word.matches("(?!.*[\\d[A-Z]]).*")) {
                     bw.write(word);
@@ -181,7 +178,7 @@ public class Utils {
     }
 
     public static void outputOrderedArray(double[][]array) {                                                         //9
-        try (BufferedWriter dos = new BufferedWriter(new FileWriter("OrderedArrayDouble.txt"))){
+        try (BufferedWriter dos = new BufferedWriter(new FileWriter("Files/OrderedArrayDouble.txt"))){
             double totalSum = 0;
             int totalCountElement = 0;
             dos.write("Ряд Сумма  Значение \n");
@@ -201,7 +198,7 @@ public class Utils {
             e.printStackTrace();
         }
 
-        try (BufferedReader br = new BufferedReader(new FileReader("OrderedArrayDouble.txt"))){
+        try (BufferedReader br = new BufferedReader(new FileReader("Files/OrderedArrayDouble.txt"))){
             String line;
             while((line = br.readLine()) != null) {
                 System.out.println(line);
@@ -212,7 +209,7 @@ public class Utils {
     }
 
     public static void InputOutputReverseArray(int[]array) {                                                        //10
-        try (DataOutputStream dos = new DataOutputStream(new FileOutputStream("ReverseArray.txt"))){
+        try (DataOutputStream dos = new DataOutputStream(new FileOutputStream("Files/ReverseArray.txt"))){
             for(int i = array.length - 1; i >=0; i--) {
                 dos.writeInt(array[i]);
             }
@@ -220,7 +217,7 @@ public class Utils {
             e.printStackTrace();
         }
 
-        try (DataInputStream dis = new DataInputStream(new FileInputStream("ReverseArray.txt"))){
+        try (DataInputStream dis = new DataInputStream(new FileInputStream("Files/ReverseArray.txt"))){
             for(int i = 0; i < array.length; i++) {
                 System.out.print(dis.readInt() + " ");
             }
@@ -231,7 +228,7 @@ public class Utils {
 
     public static void splitBigNumber() {                                                                           //11
         String line = null;
-        try (BufferedReader br = new BufferedReader(new FileReader("BigNumber.txt"))){
+        try (BufferedReader br = new BufferedReader(new FileReader("Files/BigNumber.txt"))){
             line = br.readLine();
         } catch (IOException e) {
             e.printStackTrace();
@@ -257,7 +254,7 @@ public class Utils {
     }
 
     public static void correctionErrorReadRussianLanguage() {                                                       //12
-        try (FileInputStream fis = new FileInputStream("TextInRussian.txt")) {
+        try (FileInputStream fis = new FileInputStream("Files/TextInRussian.txt")) {
             int c;
             while ((c = fis.read()) != -1) {
                 String symbol = (char)c + "";

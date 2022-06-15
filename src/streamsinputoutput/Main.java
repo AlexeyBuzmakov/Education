@@ -6,7 +6,7 @@ public class Main {
         double[][]arrayDouble = {{5, 12 , 13, 92}, {44, 31, 16, 28}, {13, 5, 66, 99}, {84, 17, 32, 55}};
         int[]arrayInt = {16, 97, 44, 15, 23, 81, 55};
 
-//        Utils.inputOutputUsingByteStreams();
+        Utils.inputOutputUsingByteStreams();
 //        Utils.inputOutputUsingBufferedByteStreams();
 //        Utils.inputOutputUsingCharacterStreams();
 //        Utils.inputOutputUsingBufferedCharacterStreams();
