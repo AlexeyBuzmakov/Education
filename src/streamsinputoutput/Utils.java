@@ -72,6 +72,20 @@ public class Utils {
         }
     }
 
+    public static void inputOutputPrimitives() {                                                                     //5
+        try (DataOutputStream dos = new DataOutputStream(new FileOutputStream("Primitives.txt"))){
+            dos.writeByte(127);
+            dos.writeShort(16873);
+            dos.writeInt(228752);
+            dos.writeLong(1873194817);
+            dos.writeDouble(55.3);
+            dos.writeFloat(34.15F);
+            dos.writeBoolean(false);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void inputOutputMatrix(int[][]matrix) {                                                            //6
         try (DataOutputStream dos = new DataOutputStream(new FileOutputStream("Matrix.txt"))){
             for(int i = 0; i < matrix.length; i++) {
@@ -97,11 +111,13 @@ public class Utils {
     }
 
     public static void inputOutputStudents() {                                                                       //7
-        List<String>students = new LinkedList<>();
+        List<Students>students = new LinkedList<>();
         try (BufferedReader br = new BufferedReader(new FileReader("Students.txt"))){
             String line;
             while((line = br.readLine()) != null) {
-                students.addLast(line);
+                String[]dateStudents = line.split("[- ]+");
+                students.addLast(new Students(dateStudents[0] + " " + dateStudents[1] + " " + dateStudents[2] + "-",
+                Integer.parseInt(dateStudents[3]), Double.parseDouble(dateStudents[4])));
             }
             System.out.println(students);
         } catch (IOException e) {
@@ -233,11 +249,12 @@ public class Utils {
         }
     }
 
-    public static void correctionErrorReadRussianLanguage() {
+    public static void correctionErrorReadRussianLanguage() {                                                       //12
         try (FileInputStream fis = new FileInputStream("TextInRussian.txt")) {
             int c;
             while ((c = fis.read()) != -1) {
                 String symbol = (char)c + "";
+                System.out.println(Arrays.toString(symbol.getBytes(StandardCharsets.UTF_8)));
             }
         } catch (IOException e) {
             e.printStackTrace();
