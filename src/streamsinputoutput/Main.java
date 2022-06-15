@@ -11,13 +11,13 @@ public class Main {
 //        Utils.inputOutputUsingCharacterStreams();
 //        Utils.inputOutputUsingBufferedCharacterStreams();
 //        Utils.inputOutputPrimitives();
-//        Utils.inputOutputMatrix(matrix);
+        Utils.inputOutputMatrix(matrix);
 //        Utils.inputOutputStudents();
 //        Utils.sortingFileWordsIntoDifferentFiles();
 //        Utils.outputOrderedArray(arrayDouble);
 //        Utils.InputOutputReverseArray(arrayInt);
 //        Utils.splitBigNumber();
-        Utils.correctionErrorReadRussianLanguage();
+//        Utils.correctionErrorReadRussianLanguage();
 
     }
 }

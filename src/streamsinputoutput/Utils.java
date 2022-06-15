@@ -103,6 +103,7 @@ public class Utils {
                 for(int j = 0; j < matrix[i].length; j++) {
                     System.out.print(dis.readInt() + " ");
                 }
+                dis.read();
                 System.out.println();
             }
         } catch (IOException e) {
