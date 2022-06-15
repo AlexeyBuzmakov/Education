@@ -1,5 +1,6 @@
 package streamsinputoutput;
 
+import collections.list.ArrayList;
 import collections.list.LinkedList;
 import collections.list.List;
 import java.io.*;
@@ -84,27 +85,38 @@ public class Utils {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        try (DataInputStream dis = new DataInputStream(new FileInputStream("Primitives.txt"))){
+            System.out.println(dis.readByte());
+            System.out.println(dis.readShort());
+            System.out.println(dis.readInt());
+            System.out.println(dis.readLong());
+            System.out.println(dis.readDouble());
+            System.out.println(dis.readFloat());
+            System.out.println(dis.readBoolean());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void inputOutputMatrix(int[][]matrix) {                                                            //6
-        try (DataOutputStream dos = new DataOutputStream(new FileOutputStream("Matrix.txt"))){
+        StringBuilder str = new StringBuilder();
+        try (BufferedWriter dos = new BufferedWriter(new FileWriter("Matrix.txt"))){
             for(int i = 0; i < matrix.length; i++) {
                 for(int j = 0; j < matrix[i].length; j++) {
-                    dos.writeInt(matrix[i][j]);
+                    str.append(matrix[i][j]).append(" ");
                 }
-                dos.writeBytes("\n");
+                str.append("\n");
             }
+            dos.write(String.valueOf(str));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        try (DataInputStream dis = new DataInputStream(new FileInputStream("Matrix.txt"))){
-            for(int i = 0; i < matrix.length; i++) {
-                for(int j = 0; j < matrix[i].length; j++) {
-                    System.out.print(dis.readInt() + " ");
-                }
-                dis.read();
-                System.out.println();
+        try (BufferedReader bw = new BufferedReader(new FileReader("Matrix.txt"))){
+            String line;
+            while((line = bw.readLine()) != null) {
+                System.out.println(line);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -112,7 +124,7 @@ public class Utils {
     }
 
     public static void inputOutputStudents() {                                                                       //7
-        List<Students>students = new LinkedList<>();
+        List<Students>students = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader("Students.txt"))){
             String line;
             while((line = br.readLine()) != null) {
@@ -169,28 +181,22 @@ public class Utils {
     }
 
     public static void outputOrderedArray(double[][]array) {                                                         //9
-        try (DataOutputStream dos = new DataOutputStream(new FileOutputStream("OrderedArrayDouble.txt"))){
+        try (BufferedWriter dos = new BufferedWriter(new FileWriter("OrderedArrayDouble.txt"))){
             double totalSum = 0;
             int totalCountElement = 0;
-            dos.write("Ряд Сумма  Значение".getBytes());
-            dos.writeBytes("\n");
+            dos.write("Ряд Сумма  Значение \n");
             for(int i = 0; i < array.length; i++) {
                 double sum = 0;
                 for(int j = 0; j < array[i].length; j++) {
                     sum += array[i][j];
                 }
-                dos.writeBytes(i + 1 + "   " + sum + "   " + sum/array[i].length + "\n");
+                dos.write(i + 1 + "   " + sum + "   " + sum/array[i].length + "\n");
                 totalSum += sum;
                 totalCountElement += array[i].length;
             }
-            dos.write("Количество элементов: ".getBytes());
-            dos.writeBytes(totalCountElement + "");
-            dos.writeBytes("\n");
-            dos.write("Сумма элементов: ".getBytes());
-            dos.writeBytes(totalSum + "");
-            dos.writeBytes("\n");
-            dos.write("Среднее значение элементов: ".getBytes());
-            dos.writeBytes(totalSum/totalCountElement + "");
+            dos.write("Количество элементов: " + totalCountElement + "\n");
+            dos.write("Сумма элементов: " + totalSum + "\n");
+            dos.write("Среднее значение элементов: " + totalSum/totalCountElement);
         } catch (IOException e) {
             e.printStackTrace();
         }

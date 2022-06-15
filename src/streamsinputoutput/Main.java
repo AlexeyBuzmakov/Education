@@ -11,7 +11,7 @@ public class Main {
 //        Utils.inputOutputUsingCharacterStreams();
 //        Utils.inputOutputUsingBufferedCharacterStreams();
 //        Utils.inputOutputPrimitives();
-        Utils.inputOutputMatrix(matrix);
+//        Utils.inputOutputMatrix(matrix);
 //        Utils.inputOutputStudents();
 //        Utils.sortingFileWordsIntoDifferentFiles();
 //        Utils.outputOrderedArray(arrayDouble);
