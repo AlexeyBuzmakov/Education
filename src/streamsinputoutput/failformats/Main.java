@@ -1,4 +1,4 @@
-package streamsinputoutput.part3;
+package streamsinputoutput.failformats;
 
 public class Main {
     public static final String[] FIELDS_NAMES = {"name", "surname", "age", "job", "animals"};
