@@ -1,0 +1,32 @@
+{
+"persons":[
+{
+"name": "Nikita",
+"surname": "Solonin",
+"age": "32",
+"job": "Doctor",
+"animals":["Cat"]
+},
+{
+"name": "Vlad",
+"surname": "Sokolov",
+"age": "27",
+"job": "Programmer",
+"animals":["Fish","Parrot"]
+},
+{
+"name": "Anna",
+"surname": "Musina",
+"age": "22",
+"job": "Engineer",
+"animals":["Dog","Mouse"]
+},
+{
+"name": "Maxim",
+"surname": "Malinin",
+"age": "21",
+"job": "Accountant",
+"animals":["Turtle","Monkey"]
+}
+]
+}

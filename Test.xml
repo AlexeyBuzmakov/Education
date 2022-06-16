@@ -1,32 +1,36 @@
-<PERSON1>
-<NAME>Nikita</NAME>
-<SURNAME>Solonin</SURNAME>
-<AGE>32</AGE>
-<JOB>Doctor</JOB>
-<ANIMALS>[Cat]</ANIMALS>
-</PERSON1>
+<persons>
+<name>Nikita</name>
+<surname>Solonin</surname>
+<age>32</age>
+<job>Doctor</job>
+<animals>
+<animal>Cat</animal>
+</animals>
 
-<PERSON2>
-<NAME>Vlad</NAME>
-<SURNAME>Sokolov</SURNAME>
-<AGE>27</AGE>
-<JOB>Programmer</JOB>
-<ANIMALS>[Fish, Parrot]</ANIMALS>
-</PERSON2>
+<name>Vlad</name>
+<surname>Sokolov</surname>
+<age>27</age>
+<job>Programmer</job>
+<animals>
+<animal>Fish</animal>
+<animal>Parrot</animal>
+</animals>
 
-<PERSON3>
-<NAME>Anna</NAME>
-<SURNAME>Musina</SURNAME>
-<AGE>22</AGE>
-<JOB>Engineer</JOB>
-<ANIMALS>[Dog, Mouse]</ANIMALS>
-</PERSON3>
+<name>Anna</name>
+<surname>Musina</surname>
+<age>22</age>
+<job>Engineer</job>
+<animals>
+<animal>Dog</animal>
+<animal>Mouse</animal>
+</animals>
 
-<PERSON4>
-<NAME>Maxim</NAME>
-<SURNAME>Malinin</SURNAME>
-<AGE>21</AGE>
-<JOB>Accountant</JOB>
-<ANIMALS>[Turtle, Monkey]</ANIMALS>
-</PERSON4>
-
+<name>Maxim</name>
+<surname>Malinin</surname>
+<age>21</age>
+<job>Accountant</job>
+<animals>
+<animal>Turtle</animal>
+<animal>Monkey</animal>
+</animals>
+</persons>
