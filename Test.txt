@@ -1,0 +1,4 @@
+1. Nikita Solonin 32 Doctor [Cat]
+2. Vlad Sokolov 27 Programmer [Fish, Parrot]
+3. Anna Musina 22 Engineer [Dog, Mouse]
+4. Maxim Malinin 21 Accountant [Turtle, Monkey]

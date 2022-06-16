@@ -1,0 +1,32 @@
+<PERSON1>
+<NAME>Nikita</NAME>
+<SURNAME>Solonin</SURNAME>
+<AGE>32</AGE>
+<JOB>Doctor</JOB>
+<ANIMALS>[Cat]</ANIMALS>
+</PERSON1>
+
+<PERSON2>
+<NAME>Vlad</NAME>
+<SURNAME>Sokolov</SURNAME>
+<AGE>27</AGE>
+<JOB>Programmer</JOB>
+<ANIMALS>[Fish, Parrot]</ANIMALS>
+</PERSON2>
+
+<PERSON3>
+<NAME>Anna</NAME>
+<SURNAME>Musina</SURNAME>
+<AGE>22</AGE>
+<JOB>Engineer</JOB>
+<ANIMALS>[Dog, Mouse]</ANIMALS>
+</PERSON3>
+
+<PERSON4>
+<NAME>Maxim</NAME>
+<SURNAME>Malinin</SURNAME>
+<AGE>21</AGE>
+<JOB>Accountant</JOB>
+<ANIMALS>[Turtle, Monkey]</ANIMALS>
+</PERSON4>
+
