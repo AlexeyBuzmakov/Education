@@ -1,5 +1,5 @@
-Name;Surname;Age;Job;Animals
-Nikita;Solonin;32;Doctor;[Cat]
-Vlad;Sokolov;27;Programmer;[Fish, Parrot]
-Anna;Musina;22;Engineer;[Dog, Mouse]
-Maxim;Malinin;21;Accountant;[Turtle, Monkey]
+name,surname,age,job,animals
+Nikita,Solonin,32,Doctor,[Cat]
+Vlad,Sokolov,27,Programmer,[Fish, Parrot]
+Anna,Musina,22,Engineer,[Dog, Mouse]
+Maxim,Malinin,21,Accountant,[Turtle, Monkey]

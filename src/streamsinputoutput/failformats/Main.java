@@ -8,11 +8,9 @@ public class Main {
                            new Person("Anna", "Musina", 22, "Engineer", new String[]{"Dog", "Mouse"}),
                            new Person("Maxim", "Malinin", 21, "Accountant", new String[]{"Turtle", "Monkey"})};
 
-
-
         Utils.inputOutputArrayObjects(person);
         Utils.serializationDesirializationArrayObjects(person);
-        Utils.inputOutputCSV(person);
+        Utils.inputOutputCSV(person, FIELDS_NAMES);
         Utils.inputOutputXML(person, FIELDS_NAMES);
         Utils.inputOutputJSON(person, FIELDS_NAMES);
 

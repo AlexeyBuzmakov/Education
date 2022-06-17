@@ -39,12 +39,12 @@ public class Utils {
         }
     }
 
-    public static void inputOutputCSV(Person[] persons) {                                                            //3
+    public static void inputOutputCSV(Person[] persons, String[] fields) {                                           //3
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("Test.csv"))) {
-            bw.write("Name;Surname;Age;Job;Animals\n");
+            bw.write(fields[0] + "," + fields[1] + "," + fields[2] + "," + fields[3] + "," + fields[4] + "\n");
             for (Person person : persons) {
-                bw.write(person.getName() + ";" + person.getSurname() + ";" + person.getAge() + ";" +
-                        person.getJob() + ";" + Arrays.toString(person.getAnimals()) + "\n");
+                bw.write(person.getName() + "," + person.getSurname() + "," + person.getAge() + "," +
+                        person.getJob() + "," + Arrays.toString(person.getAnimals()) + "\n");
             }
         } catch (IOException e) {
             e.printStackTrace();
