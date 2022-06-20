@@ -1,4 +1,4 @@
-package streamsinputoutput.part1;
+package streamsinputoutput.io.part1;
 
 public class Students {
     private String name;

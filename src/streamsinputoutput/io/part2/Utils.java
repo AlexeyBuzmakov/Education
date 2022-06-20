@@ -1,4 +1,4 @@
-package streamsinputoutput.part2;
+package streamsinputoutput.io.part2;
 
 import java.io.*;
 import java.util.Arrays;

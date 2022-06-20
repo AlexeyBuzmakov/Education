@@ -1,4 +1,4 @@
-package streamsinputoutput.failformats;
+package streamsinputoutput.io.failformats;
 
 import java.io.Serial;
 import java.io.Serializable;

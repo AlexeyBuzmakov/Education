@@ -1,4 +1,4 @@
-package streamsinputoutput.part1;
+package streamsinputoutput.io.part1;
 
 import collections.list.ArrayList;
 import collections.list.List;
