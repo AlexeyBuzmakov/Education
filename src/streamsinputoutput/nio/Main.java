@@ -17,13 +17,13 @@ public class Main {
         String str1 = "Moscow";
         String str2 = "Tyumen";
 
-//        Utils.usedInputOutputStreams(map);
-//        Utils.usedClassFiles(map);
-//        Utils.copyMoveFiles();
-//        Utils.inputOutputMatrixUsedClassFiles(matrix);
-//        Utils.addingRowsUsedInputOutputStreams(str1, str2);
-//        Utils.addingRowsUsedClassFiles(str1, str2);
-//        Utils.createFileWithAutoExclusion();
+        Utils.writeReadUsedInputOutputStreams(map);
+        Utils.writeReadUsedClassFiles(map);
+        Utils.copyMoveFiles();
+        Utils.writeReadMatrixUsedClassFiles(matrix);
+        Utils.addingRowsUsedInputOutputStreams(str1, str2);
+        Utils.addingRowsUsedClassFiles(str1, str2);
+        Utils.createFileWithAutoExclusion();
         Utils.editSequenceNumbers();
 
     }

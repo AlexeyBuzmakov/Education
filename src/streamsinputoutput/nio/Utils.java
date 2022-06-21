@@ -64,38 +64,42 @@ public class Utils {
         }
     }
 
-    public static void writeReadMatrixUsedClassFiles(int[][] matrix) {                                                //4
-        List<String> list = new ArrayList<>();
+    public static void writeReadMatrixUsedClassFiles(int[][] matrix) {                                               //4
+        List<StringBuilder> list = new ArrayList<>();
+        StringBuilder str = new StringBuilder();
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
-                list.add(matrix[i][j] + "");
+                str.append(matrix[i][j]);
+                if(j != matrix.length - 1) {
+                    str.append(" ");
+                }
             }
-        }
-        if (!Files.exists(Paths.get("Test.txt"))) {
+            list.add(str);
             try {
-                Files.createFile(Paths.get("Test.txt"));
-                Files.write(Paths.get("Test.txt"), list);
+                Files.write(Paths.get("Test.txt"), list, APPEND);
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else {
-            System.out.println("File already exist");
+            str.delete(0, str.length());
+            list.clear();
         }
+
+        List<String> newList = new ArrayList<>();
         try {
-            List<String> newList = Files.readAllLines(Path.of("Test.txt"));
-            int[][] newMatrix = new int[matrix.length][matrix.length];
-            int index = 0;
+            newList = Files.readAllLines(Path.of("Test.txt"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        newList.remove(0);
+            String[][] newMatrix = new String[newList.size()][newList.get(0).split(" ").length];
             for (int i = 0; i < newMatrix.length; i++) {
+                String[]numbers = newList.get(i).split(" ");
                 for (int j = 0; j < newMatrix[i].length; j++) {
-                    newMatrix[i][j] = Integer.parseInt(newList.get(index));
-                    index++;
+                    newMatrix[i][j] = numbers[j];
                     System.out.print(newMatrix[i][j] + " ");
                 }
                 System.out.println();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public static void addingRowsUsedInputOutputStreams(String str, String str2) {                                 //5.1
@@ -132,31 +136,39 @@ public class Utils {
     }
 
     public static void createFileWithAutoExclusion() {                                                               //6
-        try {
-            Files.createFile(Paths.get("Test.txt"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
         List<String> list = List.of("Father", "Mother");
         try {
-            Files.write(Paths.get("Test.txt"), list);
+            Files.write(Paths.get("Test.txt"), list, CREATE_NEW);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public static void editSequenceNumbers() {
-        try (FileChannel channel = FileChannel.open(Paths.get("Test.txt"), WRITE, APPEND)){
+    public static void editSequenceNumbers() {                                                                       //7
+        try (FileChannel channel = FileChannel.open(Paths.get("Test.txt"), WRITE, READ)){
             ByteBuffer buffer = ByteBuffer.allocateDirect(10);
-            channel.position(3);
-            buffer.putInt(0);
+            channel.read(buffer);
+            buffer.flip();
+            channel.position(0);
+            int startNumber = 0;
+            int lastNumber;
+            int currentNumber = 0;
+            while(buffer.hasRemaining()) {
+                currentNumber = (char)buffer.get() - '0';
+                if(buffer.position() == 1) {
+                    startNumber = currentNumber;
+                }
+            }
+            lastNumber = currentNumber;
+            buffer.clear();
+            while(startNumber != lastNumber + 1) {
+                buffer.put((startNumber + "").getBytes());
+                startNumber++;
+            }
             buffer.flip();
             channel.write(buffer);
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }
