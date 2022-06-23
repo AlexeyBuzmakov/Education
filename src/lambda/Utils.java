@@ -1,9 +1,6 @@
 package lambda;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.function.UnaryOperator;
 
 public class Utils {                                                                                                 //1
@@ -26,13 +23,10 @@ public class Utils {                                                            
 
     public static void listTransformation(List<String>list) {                                                        //3
         List<Integer>listInteger = new ArrayList<>();
-        list.forEach(x -> {listInteger.add(Integer.parseInt(x));});
+        list.forEach(x -> {
+            listInteger.add(Integer.parseInt(x));
+        });
         System.out.println(listInteger);
-    }
-
-    public static void sortStringLenght(List<String>list) {                                                         //4?
-        Comparator<String> comparator = (o1, o2) -> Integer.compare(o1.length(), o2.length());
-        System.out.println(list);
     }
 
     public static<T> void variableTypeConversion(T name) {                                                           //5
@@ -53,28 +47,41 @@ public class Utils {                                                            
         System.out.println(function.apply(employee));
     }
 
+    @SuppressWarnings("all")
     public static boolean regularExpressionSearch(String str, String sample) {                                       //1
-        if (str.length() < sample.length() - 1) {
+        if(str.length() < sample.length() - 1) {
             return false;
         }
-        int indexRepeat = sample.indexOf("+");
-        sample = sample.substring(0, indexRepeat) + sample.substring(indexRepeat + 1);
-        String[] newStr = str.split("");
-        String[] newSample = sample.split("");
-        int countRepet = 0;
-        for (int i = 0; i < newStr.length; i++) {
-            if (i == indexRepeat) {
-                while (newStr[i].equals(newStr[i - 1]) && i < newStr.length - 1) {
-                    i++;
-                    countRepet++;
-                }
+        boolean fullCycle = false;
+        boolean repet = false;
+        int start = 0;
+        int end = 0;
+
+        for (int i = 0; i < str.length() - 1; i++) {
+            if (str.charAt(i) == str.charAt(i + 1) && !repet) {
+                repet = true;
+                start = i;
+            } else if (str.charAt(i) != str.charAt(i + 1) && repet) {
+                end = i;
+                break;
             }
-            System.out.println(newStr[i] + " " + newSample[i - countRepet]);
-            if (!newStr[i].equals(newSample[i - countRepet])) {
-                return false;
+            if(repet && i == str.length() - 2) {
+                fullCycle = true;
             }
         }
-        return true;
+
+        if (repet && !fullCycle) {
+            return (str.substring(0, start) + str.substring(end)).equals(sample.substring(0, sample.indexOf("+")) +
+                    sample.substring(sample.indexOf("+") + 1));
+        }
+        else if(!repet) {
+            return str.equals(sample.substring(0, sample.indexOf("+")) + sample.substring(sample.indexOf("+") + 1));
+        }
+        else if(repet && fullCycle) {
+            System.out.println(str.substring(0, start + 1) + " " + sample.substring(0, sample.indexOf("+")) + sample.substring(sample.indexOf("+") + 1));
+            return (str.substring(0, start + 1)).equals(sample.substring(0, sample.indexOf("+")) + sample.substring(sample.indexOf("+") + 1));
+        }
+        return false;
     }
 
     public static void integerDivision(int a, int b) {                         //2 Не стал учитывать отрицательные числа

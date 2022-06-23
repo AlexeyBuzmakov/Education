@@ -1,7 +1,6 @@
 package lambda;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 
 public class Main {
@@ -24,24 +23,25 @@ public class Main {
         listString.add("40");
         listString.add("50");
 
-        List<String>listWords = new ArrayList<>();
-        listWords.add("Moscow");
-        listWords.add("Ufa");
-        listWords.add("Chelyabinsk");
-        listWords.add("Kiev");
-        listWords.add("SanFrancisco");
+        Set<String> treeSet = new TreeSet<>((String o1, String o2) -> Integer.compare(o1.length(), o2.length()));    //4
+        treeSet.add("Moscow");
+        treeSet.add("Ufa");
+        treeSet.add("Chelyabinsk");
+        treeSet.add("Kiev");
+        treeSet.add("SanFrancisco");
 
         int[]arr = {12, 19, 27, 44, 65, 71, 89, 113};
 
         Employee employee = new Employee("Ivan", "Ivanov", 27, "Doctor");
+
 //        Utils.listFilteringOne(listInteger);
 //        Utils.listFilteringTwo(listInteger);
 //        Utils.listTransformation(listString);
-//        Utils.sortStringLenght(listWords);
-//        Utils.variableTypeConversion(a);
-//        Utils.increasePerUnit(a);
+//        System.out.println(treeSet);
+//        Utils.variableTypeConversion(10);
+//        Utils.increasePerUnit(10);
 //        Utils.conversionToJSONFormat(employee);
-        System.out.println(Utils.regularExpressionSearch("Fatttttthereeeee","Fat+here"));
+//        System.out.println(Utils.regularExpressionSearch("FFFathfere","F+athfere"));
 //        Utils.integerDivision(4,5);
 //        System.out.println(Utils.binarySearch(arr, 111));
     }
