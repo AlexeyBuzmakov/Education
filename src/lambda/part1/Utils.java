@@ -1,4 +1,4 @@
-package lambda;
+package lambda.part1;
 
 import java.util.*;
 import java.util.function.UnaryOperator;
@@ -41,7 +41,7 @@ public class Utils {                                                            
 
     public static<T> void conversionToJSONFormat(Employee employee) {                                                //7
         MyFunction<Employee, String>function = x ->
-        "{\n" + "\"" + employee.getClass().toString() + "\":[\n" + "{\n" + "\"" + employee.getName() + "\",\n" +
+        "{\n" + "\"Employee\":[\n" + "{\n" + "\"" + employee.getName() + "\",\n" +
         "\"" + employee.getSurname() + "\",\n" + "\"" + employee.getAge() + "\",\n" + "\"" + employee.getJob() + "\"\n" +
         "}\n]\n}";
         System.out.println(function.apply(employee));

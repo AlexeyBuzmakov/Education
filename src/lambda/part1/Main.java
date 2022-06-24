@@ -1,4 +1,4 @@
-package lambda;
+package lambda.part1;
 
 import java.util.*;
 
