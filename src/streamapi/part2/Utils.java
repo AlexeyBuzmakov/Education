@@ -1,6 +1,7 @@
 package streamapi.part2;
 
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Utils {
@@ -9,21 +10,21 @@ public class Utils {
             return Optional.empty();
         }
         int max = Integer.MIN_VALUE;
-        for(Integer num : list) {
-            if(num > max) {
+        for (Integer num : list) {
+            if (num > max) {
                 max = num;
             }
         }
         return Optional.of(max);
-        }
+    }
 
     public static Optional<Integer> getMin(List<Integer> list) {                                                   //1.2
         if (list.size() == 0) {
             return Optional.empty();
         }
         int min = Integer.MAX_VALUE;
-        for(Integer num : list) {
-            if(num < min) {
+        for (Integer num : list) {
+            if (num < min) {
                 min = num;
             }
         }
@@ -35,51 +36,58 @@ public class Utils {
             return Optional.empty();
         }
         double sum = 0;
-        for(Integer num : list) {
+        for (Integer num : list) {
             sum += num;
         }
-        return Optional.of(sum/list.size());
+        return Optional.of(sum / list.size());
     }
 
-    public static boolean checkAgeAllUseStream(Person[]person) {                                                   //2.1
+    public static boolean checkAgeAllUseStream(Person[] person) {                                                  //2.1
         return Arrays.stream(person)
                 .allMatch(x -> x.getAge() >= 18);
     }
 
-    public static boolean checkAgeAllUseCycle(Person[]persons) {                                                   //2.2
-        for(Person person : persons) {
-            if(person.getAge() < 18) {
+    public static boolean checkAgeAllUseCycle(Person[] persons) {                                                  //2.2
+        for (Person person : persons) {
+            if (person.getAge() < 18) {
                 return false;
             }
         }
         return true;
     }
 
-    public static boolean checkAgeOneUseStream(Person[]person) {                                                   //3.1
+    public static boolean checkAgeOneUseStream(Person[] person) {                                                  //3.1
         return Arrays.stream(person)
                 .anyMatch(x -> x.getAge() >= 18);
     }
 
-    public static boolean checkAgeOneUseCycle(Person[]persons) {                                                   //3.2
-        for(Person person : persons) {
-            if(person.getAge() >= 18) {
+    public static boolean checkAgeOneUseCycle(Person[] persons) {                                                  //3.2
+        for (Person person : persons) {
+            if (person.getAge() >= 18) {
                 return true;
             }
         }
         return false;
     }
 
-    public static void removeRepeat(List<Integer>list) {                                                           //4.1
+    public static void removeRepeat(List<Integer> list) {                                                          //4.1
         list.stream()
                 .distinct()
                 .forEach(System.out::println);
     }
 
-    public static void removeRepeatTwo(List<Integer>list) {                                                        //4.2
-
+    @SuppressWarnings("all")
+    public static void removeRepeatTwo(List<Integer> list) {                                                       //4.2
+        list.stream()
+                .collect(Collectors.toSet())
+                .forEach(System.out::println);
     }
 
-    public static void removeRepeatSorted(List<Integer>list) {                                                       //5
+    @SuppressWarnings("all")
+    public static void removeRepeatSorted(List<Integer> list) {                                                      //5
+        list.stream()
+                .collect(Collectors.toCollection(TreeSet::new))
+                .forEach(System.out::println);
 
     }
 

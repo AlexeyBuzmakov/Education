@@ -13,6 +13,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         List<Integer> list = new ArrayList<>();
         int[] arr = new int[10];
+        double[][] matrix = {{5.5, 4.3, 6.7, 11.2}, {13.7, 8.1, 1.9, 4.5}};
         Student[] students = {new Student("Bob", Map.of("math", List.of(5, 4, 5, 3, 5),
                 "geometry", List.of(4, 3, 5, 4, 3),
                 "philosophy", List.of(5, 4, 5, 4, 4))),
@@ -44,8 +45,8 @@ public class Main {
                 .skip(999);
         streamNumbersThree.forEach(out::println);
 
-        double[][] matrix = {{5.5, 4.3, 6.7, 11.2}, {13.7, 8.1, 1.9, 4.5}};                                          //5
-        Arrays.stream(matrix)
+
+        Arrays.stream(matrix)                                                                                        //5
                 .flatMap(array -> Arrays.stream(array).boxed())
                 .map(x -> x * 2)
                 .forEach(out::println);
@@ -57,16 +58,16 @@ public class Main {
 
         Arrays.stream(students)                                                                                      //7
                 .map(student -> student.getName() + ":" + student
-                .getMarks().values()
-                .stream()
-                .flatMap(Collection::stream)
-                .toList())
+                        .getMarks().values()
+                        .stream()
+                        .flatMap(Collection::stream)
+                        .toList())
                 .forEach(out::println);
 
         Arrays.stream(students)                                                                                      //8
                 .filter(student -> student.getMarks().values().stream()
-                .flatMap(Collection::stream)
-                .allMatch(x -> x > 3))
+                        .flatMap(Collection::stream)
+                        .allMatch(x -> x > 3))
                 .forEach(out::println);
 
         List<String> list2 = new ArrayList<>();                                                                      //9
@@ -83,7 +84,7 @@ public class Main {
         list2.stream()
                 .skip(1)
                 .map(x -> x.substring(x.indexOf(" ") + 1, x.lastIndexOf(" "))
-                .split(" "))
+                        .split(" "))
                 .forEach(x -> out.println(Arrays.toString(x)));
 
         list2.stream()
@@ -94,10 +95,10 @@ public class Main {
 
         //Algorithms
         String word = "abcdetyabcety";                                                                               //1
-        HashMap<Character, Integer>map = new LinkedHashMap<>();
+        HashMap<Character, Integer> map = new LinkedHashMap<>();
         int i = 0;
-        while(i < word.length()) {
-            if(map.containsKey(word.charAt(i))) {
+        while (i < word.length()) {
+            if (map.containsKey(word.charAt(i))) {
                 map.put(word.charAt(i), map.get(word.charAt(i)) + 1);
                 i++;
                 continue;
@@ -105,9 +106,9 @@ public class Main {
             map.put(word.charAt(i), 1);
             i++;
         }
-        Set<Map.Entry<Character, Integer>>entries = map.entrySet();
-        for(Map.Entry<Character, Integer>entry : entries) {
-            if(entry.getValue() == 1) {
+        Set<Map.Entry<Character, Integer>> entries = map.entrySet();
+        for (Map.Entry<Character, Integer> entry : entries) {
+            if (entry.getValue() == 1) {
                 out.println(entry.getKey());
                 break;
             }
@@ -115,11 +116,11 @@ public class Main {
 
         int[] numbers = {2, 3, 1, 4, 5};                                                                             //2
         int mult = 1;
-        for(Integer num : numbers) {
+        for (Integer num : numbers) {
             mult *= num;
         }
-        int[]multNumbers = new int[numbers.length];
-        for(int j = 0; j < multNumbers.length; j++) {
+        int[] multNumbers = new int[numbers.length];
+        for (int j = 0; j < multNumbers.length; j++) {
             multNumbers[j] = mult / numbers[j];
             out.print(multNumbers[j] + " ");
         }
