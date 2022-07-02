@@ -34,19 +34,14 @@ public class Utils {
                 .orElse(0.0);
     }
 
-    public static Map<String, String> getFeedbackStudentStudies(Student[] students) {                             //1.4
+    public static Map<String, Double> getFeedbackStudentStudies(Student[] students) {                              //1.4
         return Arrays.stream(students)
                 .collect(Collectors.toMap(Student::getName,
                         student -> student.getMarks().values().stream()
                                 .flatMap(Collection::stream)
                                 .mapToInt(Integer::intValue)
-                                .sum()))
-                .entrySet().stream()
-                .collect(Collectors.toMap(Map.Entry::getKey, x -> x.getValue().toString()))
-                .entrySet().stream()
-                .takeWhile(x -> Integer.parseInt(x.getValue()) >= 65 || x.getValue().equals("Good"))
-                .collect(Collectors.toMap(Map.Entry::getKey, x -> "Good"));
-
+                                .average()
+                                .orElse(0.0)));
     }
 
     public static Optional<String> easiestSubject(Student[] students) {                                            //1.5

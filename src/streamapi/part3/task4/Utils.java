@@ -27,7 +27,7 @@ public class Utils {
                 .collect(Collectors.toMap(Map.Entry::getKey, x -> x.getValue().stream()
                         .flatMapToInt(y -> y.getMarks().values().stream()
                                 .flatMap(Collection::stream)
-                                .mapToInt(z -> z))
+                                .mapToInt(Integer::intValue))
                         .average()
                         .orElse(0.0)));
     }
