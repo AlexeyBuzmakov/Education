@@ -13,17 +13,17 @@ public class Main {
 
 
 
-//        Utils.createSubjectDateTimeFromString("2002-11-15", "05:13:26");
-//        System.out.println(Utils.formatDate(currentDate));
-//        System.out.println(Utils.getSubjectDateFromString("20:03:2021"));
-//        Utils.checkLeapYearAndGetDayWeek(specificDate);
-//        Utils.getDateDifference(specificDate, currentDate);
-//        Utils.getTimeDifference(specificTime, currentTime);
-//        System.out.println("Before date: " + Utils.getBeforeDate(specificDate, currentDate));
-//        System.out.println("Count leap years: " + Utils.countLeapYears(2000, 2022));
-//        Utils.getAgeJava();
-//        Utils.getDayWeek(currentDate);
-//        System.out.println("Time in Japan: " + Utils.getTimeJapan());
+        Utils.createSubjectDateTimeFromString("2002-11-15", "05:13:26");
+        System.out.println(Utils.formatDate(currentDate));
+        System.out.println(Utils.getSubjectDateFromString("20:03:2021"));
+        Utils.checkLeapYearAndGetDayWeek(specificDate);
+        Utils.getDateDifference(specificDate, currentDate);
+        Utils.getTimeDifference(specificTime, currentTime);
+        System.out.println("Before date: " + Utils.getBeforeDate(specificDate, currentDate));
+        System.out.println("Count leap years: " + Utils.countLeapYears(2000, 2022));
+        Utils.getAgeJava();
+        Utils.getDayWeek(currentDate);
+        System.out.println("Time in Japan: " + Utils.getTimeJapan());
         Utils.getTrainSchedule()
                 .forEach(System.out::println);
         System.out.println("Возможность добавить дополнительный рейс: " + Utils.checkAbilityAddTip(LocalTime.of(22,16), 10));

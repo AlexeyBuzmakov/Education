@@ -1,11 +1,9 @@
 package date_time_api;
+import java.sql.Time;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Utils {
@@ -82,6 +80,10 @@ public class Utils {
         DayOfWeek dayOfWeekAfterOneYear = date.plusYears(1).getDayOfWeek();
         System.out.println(dayWeekAfterOneHundredDays + " - after one hundred days\n" + dayWeekAfterThreeMonth +
                 " - after three month\n" + dayWeekAfterOneWeek + " - after one week\n" + dayOfWeekAfterOneYear + " - after one year");
+    }
+
+    public static LocalTime getTimeJapan() {                                                                        //12
+        return LocalTime.now(ZoneId.of("Asia/Tokyo"));
     }
 
     public static List<LocalTime> getTrainSchedule() {                                                              //13
