@@ -32,10 +32,13 @@ public class Main {
                 .count();
         System.out.println(countPublicMethods);
 
-        long countNotPublicMethods = Arrays.stream(methods)                                                          //5
-                .filter(x -> x.getModifiers() == Modifier.PUBLIC)
-                .count();
+        long countNotPublicMethods = methods.length - countPublicMethods;
         System.out.println(countNotPublicMethods);
+
+        long countPrivateMethods = Arrays.stream(methods)                                                            //5
+                .filter(x -> x.getModifiers() == Modifier.PRIVATE)
+                .count();
+        System.out.println(countPrivateMethods);
     }
 }
 

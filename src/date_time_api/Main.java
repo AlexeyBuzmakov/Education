@@ -1,5 +1,6 @@
 package date_time_api;;
 import java.time.*;
+import java.time.format.DateTimeFormatter;
 
 public class Main {
     public static void main(String[] args) {
@@ -23,6 +24,8 @@ public class Main {
 //        Utils.getAgeJava();
 //        Utils.getDayWeek(currentDate);
 //        System.out.println("Time in Japan: " + Utils.getTimeJapan());
-        Utils.getTrainSchedule(LocalTime.of(23,44), 5);
+        Utils.getTrainSchedule()
+                .forEach(System.out::println);
+        System.out.println("Возможность добавить дополнительный рейс: " + Utils.checkAbilityAddTip(LocalTime.of(22,16), 10));
     }
 }

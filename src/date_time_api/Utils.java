@@ -2,8 +2,11 @@ package date_time_api;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Utils {
     public static void createSubjectDateTimeFromString(String d, String t) {                                         //2
@@ -81,38 +84,33 @@ public class Utils {
                 " - after three month\n" + dayWeekAfterOneWeek + " - after one week\n" + dayOfWeekAfterOneYear + " - after one year");
     }
 
-    public static LocalTime getTimeJapan() {                                                                        //12
-        return LocalTime.now(ZoneId.of("Asia/Tokyo"));
-    }
-
-    public static void getTrainSchedule(LocalTime a, int time) {                                                 //13,14
-        int countTrain = 3;
-        int movementInterval = 45;
-        int movementTime = 12;
-        int scheduleAdjustmentTime = (movementInterval - countTrain * movementTime) / countTrain;
-        boolean addTrip = false;
-
-        List<LocalTime> timeTable = new LinkedList<>();
-        LocalTime startMovement = LocalTime.of(0, 0);
-        LocalDateTime day = LocalDateTime.of(2000, Month.JANUARY, 1, 0,0);
-
+    public static List<LocalTime> getTrainSchedule() {                                                              //13
+        Train[] trains = new Train[2];
+        for (int i = 0; i < 2; i++) {
+            trains[i] = new Train();
+        }
+        List<LocalTime> timeTable = new ArrayList<>();
         while (true) {
-            for (int i = 0; i < countTrain; i++) {
-                if (day.getDayOfMonth() != 1) {
-                    timeTable
-                            .forEach(System.out::println);
-                    System.out.println("Возможность добавить дополнительный рейс в расписание: " + addTrip);
-                    return;
+            for (Train train : trains) {
+                if (train.getStartMovement().getDayOfMonth() > 1) {
+                    return timeTable;
                 }
-                timeTable.add(startMovement);
-                if (startMovement.plusMinutes(movementTime).isBefore(a) && a.plusMinutes(time).
-                        isBefore(startMovement.plusMinutes(movementTime).plusMinutes(scheduleAdjustmentTime))) {
-                    addTrip = true;
-                    timeTable.add(a);
-                }
-                startMovement = startMovement.plusMinutes(movementTime + scheduleAdjustmentTime);
-                day = day.plusMinutes(movementTime + scheduleAdjustmentTime);
+                timeTable.add(LocalTime.of(train.getStartMovement().getHour(), train.getStartMovement().getMinute()));
+                train.setStartMovement(train.getStartMovement().plusMinutes(Train.MOVEMENT_INTERVAL));
             }
         }
     }
+
+    public static boolean checkAbilityAddTip(LocalTime timeStart, int duration) {                                   //14
+        List<LocalTime> listTable = getTrainSchedule();
+        for (LocalTime time : listTable) {
+            if (time.plusMinutes(Train.MOVEMENT_TIME).isBefore(timeStart) && timeStart.plusMinutes(duration).isBefore(time)
+                    || listTable.get(listTable.size() - 1).plusMinutes(Train.MOVEMENT_TIME).isBefore(timeStart) &&
+                    timeStart.getHour() * 60 + timeStart.getMinute() + duration <= 1440) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
+
