@@ -1,1 +1,5 @@
-
+Name Surname Age Job
+Alex Ivanov 19 Engineer
+Bob Makarov 25 Doctor
+Zina Lunina 23 Teacher
+Mariya Lysova 37 Translator

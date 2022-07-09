@@ -11,7 +11,7 @@ public class Test {
         this.age = age;
     }
 
-    @MyAnnotationFour(year = 2021, month = "June", day = 5)
+    @MyAnnotationFour(2021)
     public String getName() {
         return name;
     }

@@ -8,7 +8,8 @@ import java.lang.annotation.Target;
 @Target({ElementType.FIELD, ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface MyAnnotationFour {
-    int year();
-    String month();
-    int day();
+    int value() default 2018;
+    int year() default 2018;
+    String month() default "June";
+    int day() default 3;
 }
