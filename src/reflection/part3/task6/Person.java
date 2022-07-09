@@ -1,15 +1,49 @@
 package reflection.part3.task6;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 public class Person {
     private String name;
     private String surname;
     private int age;
-    private String job;
+    private LocalDate dateBirth;
+    private LocalTime timeBirth;
+    private Animal animal;
 
-    public Person(String name, String surname, int age, String job) {
+    public void setName(String name) {
         this.name = name;
+    }
+
+    public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    public void setAge(int age) {
         this.age = age;
-        this.job = job;
+    }
+
+    public void setDateBirth(LocalDate dateBirth) {
+        this.dateBirth = dateBirth;
+    }
+
+    public void setTimeBirth(LocalTime timeBirth) {
+        this.timeBirth = timeBirth;
+    }
+
+    public void setAnimal(Animal animal) {
+        this.animal = animal;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", age=" + age +
+                ", dateBirth=" + dateBirth +
+                ", timeBirth=" + timeBirth +
+                ", animal=" + animal +
+                '}';
     }
 }

@@ -1,4 +1,4 @@
-package reflection.part3.task6;
+package reflection.part3.task7;
 
 import java.io.IOException;
 import java.lang.reflect.Field;

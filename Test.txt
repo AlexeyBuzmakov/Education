@@ -1,5 +1,5 @@
-Name Surname Age Job
-Alex Ivanov 19 Engineer
-Bob Makarov 25 Doctor
-Zina Lunina 23 Teacher
-Mariya Lysova 37 Translator
+Name   Surname Age DateBirth  TimeBirth
+Alex   Ivanov  27  1995-07-22 07:15
+Bob    Makarov 34  1988-05-17 11:27
+Zina   Lunina  27  1995-02-09 23:18
+Mariya Lysova  29  1993-06-25 16:11
