@@ -1,4 +1,4 @@
-package reflection.part3.task6;
+package reflection.part3.task6_8;
 
 import java.lang.reflect.Field;
 import java.nio.file.Files;
@@ -45,11 +45,11 @@ public class Reader {
         if(clazz == LocalTime.class) {
             return LocalTime.parse(value);
         }
-        if(clazz.isAnnotationPresent(MyAnnotation.class)) {
+        if(clazz.isAnnotationPresent(DeclaredClass.class)) {
             @SuppressWarnings("unchecked")
             R object = (R)clazz.getDeclaredConstructor().newInstance();
             Field[]fields = object.getClass().getDeclaredFields();
-            String[]elements = value.substring(1, value.length() - 1).split(" *,");
+            String[]elements = value.substring(1, value.length() - 1).split(",");
             for(int i = 0; i < elements.length; i++) {
                 fields[i].setAccessible(true);
                 fields[i].set(object, convert(fields[i], elements[i]));

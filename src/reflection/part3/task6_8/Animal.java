@@ -1,6 +1,6 @@
-package reflection.part3.task6;
+package reflection.part3.task6_8;
 
-@MyAnnotation(info = "My class")
+@DeclaredClass()
 public class Animal {
     private String species;
     private String classification;

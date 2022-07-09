@@ -1,4 +1,4 @@
-package reflection.part3.task6;
+package reflection.part3.task6_8;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,6 +7,5 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface MyAnnotation {
-    String info();
+public @interface DeclaredClass {
 }
