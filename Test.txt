@@ -1,5 +1,5 @@
-Name   Surname Age DateBirth  TimeBirth
-Alex   Ivanov  27  1995-07-22 07:15
-Bob    Makarov 34  1988-05-17 11:27
-Zina   Lunina  27  1995-02-09 23:18
-Mariya Lysova  29  1993-06-25 16:11
+Name   Surname Age DateBirth  TimeBirth Animal
+Alex   Ivanov  27  1995-07-22 07:15     [parrot,herbivore,3]
+Bob    Makarov 34  1988-05-17 11:27     [snake,predator,1]
+Zina   Lunina  27  1995-02-09 23:18     [cat,predator,7]
+Mariya Lysova  29  1993-06-25 16:11     [dog,herbivore,13]

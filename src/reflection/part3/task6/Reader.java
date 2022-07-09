@@ -28,7 +28,7 @@ public class Reader {
         return objects;
     }
 
-    private static Object convert(Field field, String value) {
+    private static<R> Object convert(Field field, String value) throws Exception {
         Class<?>clazz = field.getType();
         if(clazz == int.class) {
             return Integer.parseInt(value);
@@ -44,6 +44,17 @@ public class Reader {
         }
         if(clazz == LocalTime.class) {
             return LocalTime.parse(value);
+        }
+        if(clazz.isAnnotationPresent(MyAnnotation.class)) {
+            @SuppressWarnings("unchecked")
+            R object = (R)clazz.getDeclaredConstructor().newInstance();
+            Field[]fields = object.getClass().getDeclaredFields();
+            String[]elements = value.substring(1, value.length() - 1).split(" *,");
+            for(int i = 0; i < elements.length; i++) {
+                fields[i].setAccessible(true);
+                fields[i].set(object, convert(fields[i], elements[i]));
+            }
+            return object;
         }
         return null;
     }
