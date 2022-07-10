@@ -28,34 +28,45 @@ public class Reader {
         return objects;
     }
 
-    private static<R> Object convert(Field field, String value) throws Exception {
-        Class<?>clazz = field.getType();
-        if(clazz == int.class) {
+    private static <R> Object convert(Field field, String value) throws Exception {
+        Class<?> clazz = field.getType();
+        if (clazz == int.class) {
             return Integer.parseInt(value);
         }
-        if(clazz == String.class) {
+        if (clazz == String.class) {
             return value;
         }
-        if(clazz == LocalDate.class) {
+        if (clazz == LocalDate.class) {
             return LocalDate.parse(value);
         }
-        if(clazz == LocalDateTime.class) {
+        if (clazz == LocalDateTime.class) {
             return LocalDateTime.parse(value);
         }
-        if(clazz == LocalTime.class) {
+        if (clazz == LocalTime.class) {
             return LocalTime.parse(value);
         }
-        if(clazz.isAnnotationPresent(DeclaredClass.class)) {
-            @SuppressWarnings("unchecked")
-            R object = (R)clazz.getDeclaredConstructor().newInstance();
-            Field[]fields = object.getClass().getDeclaredFields();
-            String[]elements = value.substring(1, value.length() - 1).split(",");
-            for(int i = 0; i < elements.length; i++) {
-                fields[i].setAccessible(true);
-                fields[i].set(object, convert(fields[i], elements[i]));
-            }
-            return object;
+        @SuppressWarnings("unchecked")
+        R object = (R) clazz.getDeclaredConstructor().newInstance();
+        Field[] fields = object.getClass().getDeclaredFields();
+        String[] elements = value.substring(1, value.length() - 1).split(",");
+        for (int i = 0; i < elements.length; i++) {
+            fields[i].setAccessible(true);
+            fields[i].set(object, convert(fields[i], elements[i]));
         }
-        return null;
+        return object;
+
+        //или вариант помечать необходимые классы аннотацией
+
+//        if(clazz.isAnnotationPresent(DeclaredClass.class)) {
+//            @SuppressWarnings("unchecked")
+//            R object = (R)clazz.getDeclaredConstructor().newInstance();
+//            Field[]fields = object.getClass().getDeclaredFields();
+//            String[]elements = value.substring(1, value.length() - 1).split(",");
+//            for(int i = 0; i < elements.length; i++) {
+//                fields[i].setAccessible(true);
+//                fields[i].set(object, convert(fields[i], elements[i]));
+//            }
+//            return object;
+//        }
     }
 }
