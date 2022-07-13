@@ -16,7 +16,7 @@ public class Utils {
     }
 
     public static void getSumUseSeveralThreads(int[]arr) throws InterruptedException {
-        final long[] sum = {0};
+        final long[] sum = {0, 0, 0};
         int index = arr.length/3;
         Thread thread1 = new Thread(() ->{
             for(int i = 0; i < index; i++) {
@@ -25,21 +25,21 @@ public class Utils {
         });
         Thread thread2 = new Thread(() ->{
             for(int i = index; i < index * 2; i++) {
-                sum[0] += arr[i];
+                sum[1] += arr[i];
             }
         });
         Thread thread3 = new Thread(() ->{
             for(int i = index * 2; i < arr.length; i++) {
-                sum[0] += arr[i];
+                sum[2] += arr[i];
             }
         });
         long start = System.nanoTime();
         thread1.start();
-        thread1.join();
         thread2.start();
-        thread2.join();
         thread3.start();
+        thread1.join();
+        thread2.join();
         thread3.join();
-        System.out.println("3 потока - Сумма: " + sum[0] + " Время выполнения: " + (System.nanoTime() - start) / 1_000_000 + " мс");
+        System.out.println("3 потока - Сумма: " + (sum[0] + sum[1] + sum[2]) + " Время выполнения: " + (System.nanoTime() - start) / 1_000_000 + " мс");
     }
 }
