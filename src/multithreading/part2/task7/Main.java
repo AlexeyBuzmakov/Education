@@ -7,15 +7,15 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
         Writer writer = new Writer();
         Lists list = new Lists();
-
         String[]strings = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
         Integer[]integers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         List<Thread>threadList = new ArrayList<>();
+        long start;
 
         for(int i = 0; i < 5; i++) {
             threadList.add(new Thread(() -> writer.synchronizedMethodFillLists(list, strings, integers)));
         }
-        long start = System.nanoTime();
+        start = System.nanoTime();
         threadList.forEach(Thread::start);
         threadList.forEach(x -> {
             try {
