@@ -8,15 +8,26 @@ public class Main {
         Printer printer4 = new Printer();
         Printer printer5 = new Printer();
 
-        Thread thread1 = new Thread(printer1::synchronizedClassPrintSubsequence);
-        Thread thread2 = new Thread(printer2::synchronizedClassPrintSubsequence);
-        Thread thread3 = new Thread(printer3::synchronizedClassPrintSubsequence);
-        Thread thread4 = new Thread(printer4::synchronizedClassPrintSubsequence);
-        Thread thread5 = new Thread(printer5::synchronizedClassPrintSubsequence);
-        thread1.start();
-        thread2.start();
-        thread3.start();
-        thread4.start();
-        thread5.start();
+        Thread threadC1 = new Thread(printer1::synchronizedClassPrintSubsequence);
+        Thread threadC2 = new Thread(printer2::synchronizedClassPrintSubsequence);
+        Thread threadC3 = new Thread(printer3::synchronizedClassPrintSubsequence);
+        Thread threadC4 = new Thread(printer4::synchronizedClassPrintSubsequence);
+        Thread threadC5 = new Thread(printer5::synchronizedClassPrintSubsequence);
+        threadC1.start();
+        threadC2.start();
+        threadC3.start();
+        threadC4.start();
+        threadC5.start();
+
+        Thread threadM1 = new Thread(printer1::synchronizedMethodPrintSubsequence);
+        Thread threadM2 = new Thread(printer1::synchronizedMethodPrintSubsequence);
+        Thread threadM3 = new Thread(printer1::synchronizedMethodPrintSubsequence);
+        Thread threadM4 = new Thread(printer1::synchronizedMethodPrintSubsequence);
+        Thread threadM5 = new Thread(printer1::synchronizedMethodPrintSubsequence);
+        threadM1.start();
+        threadM2.start();
+        threadM3.start();
+        threadM4.start();
+        threadM5.start();
     }
 }
