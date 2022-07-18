@@ -10,7 +10,7 @@ public class Main {
         ReaderWriter readerWriter = new ReaderWriter();
         String[]strings = {"read", "write"};
         List<Thread> threadList = new ArrayList<>();
-        for(int i = 0; i < 5; i++) {
+        for(int i = 0; i < 3; i++) {
             threadList.add(new Thread(() -> {
                 try {
                     readerWriter.readWrite(strings[new Random().nextInt(2)]);

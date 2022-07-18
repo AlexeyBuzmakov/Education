@@ -1,25 +1,34 @@
 package multithreading.part3.task7;
 
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.ArrayDeque;
+import java.util.Queue;
 
 public class ProducerConsumer {
-    private final BlockingQueue<String>queue = new ArrayBlockingQueue<>(1);
+    private Queue<String>queue = new ArrayDeque<>();
+    private volatile boolean checkEnd = false;
 
-    public void produce(String str) throws InterruptedException {
+    public synchronized void produce(String str) throws InterruptedException {
         String[]strings = str.split(" ");
         for(String string : strings) {
+            if(queue.size() == 1) {
+                wait();
+            }
+            Thread.sleep(400);
             System.out.println("Produce: " + string);
-            Thread.sleep(400);
-            queue.put(string);
-            Thread.sleep(400);
+            queue.add(string);
+            notify();
         }
+        checkEnd = true;
     }
 
-    public void consume() throws InterruptedException {
-        while(true) {
-            System.out.println("Consume: " + queue.take());
+    public synchronized void consume() throws InterruptedException {
+        while(!checkEnd) {
+            if(queue.size() == 0) {
+                wait();
+            }
+            Thread.sleep(400);
+            System.out.println("Consume: " + queue.poll());
+            notify();
         }
     }
 }

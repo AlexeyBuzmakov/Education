@@ -15,8 +15,7 @@ public class Main {
         thread1.join();
         thread2.join();
 
-        boolean checkListSize = list.size() == (utilList.getCountAdd() - utilList.getCountRemove());
         System.out.println("Count add: " + utilList.getCountAdd() + "\nCount remove: " + utilList.getCountRemove() +
-                "\nTotal list size: " + list.size() + "\nCheck correctness calculations : " + checkListSize);
+                "\nTotal list size: " + list.size());
     }
 }
